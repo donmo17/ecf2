@@ -2,17 +2,17 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\ROOM;
+use App\Entity\Room;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class ROOMCrudController extends AbstractCrudController
+class RoomCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return ROOM::class;
+        return Room::class;
     }
 
     /*

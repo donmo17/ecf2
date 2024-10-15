@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\ROOMRepository;
+use App\Repository\RoomRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ROOMRepository::class)]
-class ROOM
+#[ORM\Entity(repositoryClass: RoomRepository::class)]
+class Room
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

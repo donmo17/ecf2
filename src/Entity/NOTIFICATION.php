@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\NOTIFICATIONRepository;
+use App\Repository\NotificationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: NOTIFICATIONRepository::class)]
-class NOTIFICATION
+#[ORM\Entity(repositoryClass: NotificationRepository::class)]
+class Notification
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,8 +22,8 @@ class NOTIFICATION
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    #[ORM\ManyToOne(inversedBy: 'nOTIFICATIONs')]
-    private ?BOOKING $booking_id = null;
+    #[ORM\ManyToOne(inversedBy: 'notifications')]
+    private ?Booking $booking_id = null;
 
     public function getId(): ?int
     {
