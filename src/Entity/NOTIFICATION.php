@@ -22,8 +22,8 @@ class NOTIFICATION
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    #[ORM\ManyToOne(inversedBy: 'nOTIFICATIONs')]
-    private ?BOOKING $booking_id = null;
+    #[ORM\ManyToOne(inversedBy: 'notifications')]
+    private ?Booking $booking_id = null;
 
     public function getId(): ?int
     {
