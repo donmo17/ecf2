@@ -44,22 +44,26 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, assumenda odit aut nulla, reprehenderit numquam nisi repudiandae sint consequatur distinctio dolorem exercitationem ratione? Molestiae, rem quam illum quod fuga nobis.</p>
 
             <div class="row">
+            {% for room in rooms %}
                 <div class="col-6 col-lg-4 p-2">
+                <a href="{{ path('app_room_show', { 'id': room.id }) }}">
                     <div class="card">
-                        <img src="https://images.pexels.com/photos/14608968/pexels-photo-14608968.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" class="card-img-top" alt="...">
+                        <img src="{{ asset('images/' ~ room.image) }}" class="card-img-top" alt="Salle n°{{ room.id }}">
+
                         <div class="card-body">
-                            <h5 class="card-title">Mariage Bohème</h5>
+                            <h5 class="card-title">{{ room.title }}</h5>
                             <ul>
                                 <li>Lumière naturelle</li>
                                 <li>Cuisine équipée</li>
                                 <li>Espace extérieur</li>
                             </ul>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <div class="d-flex justify-content-between"><a href="#" class="unstyled">Détail</a> <p><span>165 €</span><br>/jour</p></div>
+                            <div class="d-flex justify-content-between"><a href="#" class="unstyled">Détail</a> <p><span>{{ room.price }} €</span><br>/jour</p></div>
                             
                         </div>
-                    </div>
+                    </div></a>
                 </div>
+            {% endfor %}
             </div>
         </article>
 	</main>
