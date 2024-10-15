@@ -15,7 +15,6 @@ class HomeController extends AbstractController
     {
          $room  = $rooms->findAll() ;
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
              'rooms' => $room 
         ]);
     }

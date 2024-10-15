@@ -2,9 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Booking;
-use App\Entity\Notification;    
-use App\Entity\Room;
+use App\Entity\BOOKING;
+use App\Entity\NOTIFICATION;    
+use App\Entity\ROOM;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -47,9 +47,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         
          yield MenuItem::linkToCrud('User', 'fas fa-list', User::class);
-         yield MenuItem::linkToCrud('Room', 'fas fa-list', Room::class);
-         yield MenuItem::linkToCrud('Booking', 'fas fa-list', Booking::class);
-         yield MenuItem::linkToCrud('Notification', 'fas fa-list', Notification::class);
+         yield MenuItem::linkToCrud('ROOM', 'fas fa-list', ROOM::class);
+         yield MenuItem::linkToCrud('BOOKING', 'fas fa-list', BOOKING::class);
+         yield MenuItem::linkToCrud('NOTIFICATION', 'fas fa-list', NOTIFICATION::class);
      
 
 

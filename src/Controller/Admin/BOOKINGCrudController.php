@@ -2,17 +2,17 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Booking;
+use App\Entity\BOOKING;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class BookingCrudController extends AbstractCrudController
+class BOOKINGCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Booking::class;
+        return BOOKING::class;
     }
 
     /*

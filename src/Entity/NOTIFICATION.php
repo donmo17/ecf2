@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\NotificationRepository;
+use App\Repository\NOTIFICATIONRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: NotificationRepository::class)]
-class Notification
+#[ORM\Entity(repositoryClass: NOTIFICATIONRepository::class)]
+class NOTIFICATION
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

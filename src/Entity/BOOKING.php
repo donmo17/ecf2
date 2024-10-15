@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\BookingRepository;
+use App\Repository\BOOKINGRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Enum\BookingStatus;
+use App\Enum\BOOKINGStatus;
 
 
-#[ORM\Entity(repositoryClass: BookingRepository::class)]
-class Booking
+#[ORM\Entity(repositoryClass: BOOKINGRepository::class)]
+class BOOKING
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\RoomRepository;
+use App\Repository\ROOMRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\HasLifecycleCallbacks]
-#[ORM\Entity(repositoryClass: RoomRepository::class)]
-class Room
+#[ORM\Entity(repositoryClass: ROOMRepository::class)]
+class ROOM
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -58,7 +58,7 @@ class Room
     /**
      * @var Collection<int, Booking>
      */
-    #[ORM\OneToMany(targetEntity: Booking::class, mappedBy: 'room_id')]
+    #[ORM\OneToMany(targetEntity: BOOKING::class, mappedBy: 'room_id')]
     private Collection $bookings;
 
     public function __construct()
