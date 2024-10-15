@@ -117,5 +117,14 @@ header .nav__container--link span {
 }
 .home__gallery .card {
   text-align: start;
+}
+.home__gallery .card ul {
+  padding: 0;
+}
+.home__gallery .card ul li {
   list-style: none;
+}
+.home__gallery .row {
+  max-width: 900px;
+  margin: 0 auto;
 }/*# sourceMappingURL=style.css.map */

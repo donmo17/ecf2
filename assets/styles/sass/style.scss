@@ -124,7 +124,16 @@ header{
         text-align: center;
         .card{
             text-align: start;
-            list-style: none;
+            ul{
+                padding: 0;
+                li{
+                    list-style: none;
+                }
+            }
+        }
+        .row{
+            max-width: 900px;
+            margin: 0 auto;
         }
     }
 }
