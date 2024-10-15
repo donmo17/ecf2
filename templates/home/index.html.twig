@@ -44,8 +44,7 @@
 			<h2>Découvrez nos dernières salles :</h2>
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, assumenda odit aut nulla, reprehenderit numquam nisi repudiandae sint consequatur distinctio dolorem exercitationem ratione? Molestiae, rem quam illum quod fuga nobis.</p>
 
-			<div
-				class="row">
+			<div class="row">
 				{% for room in rooms %}
 					<div class="col-6 col-lg-4 p-2">
 						<a href="{{ path('app_room_show', { 'id': room.id }) }}">
@@ -62,22 +61,17 @@
 									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 									<div class="d-flex justify-content-between">
 										<ul>
-                                            <li><small> Min : {{ room.capacity_min }} <i class="bi bi-people"></i></small></li>
-                                            <li><small> Max : {{ room.capacity_max }} <i class="bi bi-people"></i></small></li>
-                                        </ul>
-										<p>
-											<span>{{ room.price }}
-												€</span><br>/jour</p>
+					                                            <li><small> Min : {{ room.capacity_min }} <i class="bi bi-people"></i></small></li>
+					                                            <li><small> Max : {{ room.capacity_max }} <i class="bi bi-people"></i></small></li>
+					                                        </ul>
+										<p><span>{{ room.price }} €</span><br>/jour</p>
 									</div>
-				
 								</div>
 							</div>
 						</a>
 					</div>
 				{% endfor %}
-
 			</div>
 		</article>
 	</main>
-
 {% endblock %}
