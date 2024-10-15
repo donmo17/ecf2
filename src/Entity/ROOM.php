@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 class Room
 {
@@ -55,14 +56,14 @@ class Room
    
 
     /**
-     * @var Collection<int, BOOKING>
+     * @var Collection<int, Booking>
      */
-    #[ORM\OneToMany(targetEntity: BOOKING::class, mappedBy: 'room_id')]
-    private Collection $bOOKINGs;
+    #[ORM\OneToMany(targetEntity: Booking::class, mappedBy: 'room_id')]
+    private Collection $bookings;
 
     public function __construct()
     {
-        $this->bOOKINGs = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
     #[ORM\PrePersist]
@@ -224,29 +225,29 @@ class Room
 
 
     /**
-     * @return Collection<int, BOOKING>
+     * @return Collection<int, Booking>
      */
-    public function getBOOKINGs(): Collection
+    public function getBookings(): Collection
     {
-        return $this->bOOKINGs;
+        return $this->bookings;
     }
 
-    public function addBOOKING(BOOKING $bOOKING): static
+    public function addBooking(Booking $booking): static
     {
-        if (!$this->bOOKINGs->contains($bOOKING)) {
-            $this->bOOKINGs->add($bOOKING);
-            $bOOKING->setRoomId($this);
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setRoomId($this);
         }
 
         return $this;
     }
 
-    public function removeBOOKING(BOOKING $bOOKING): static
+    public function removeBooking(Booking $booking): static
     {
-        if ($this->bOOKINGs->removeElement($bOOKING)) {
+        if ($this->bookings->removeElement($booking)) {
             // set the owning side to null (unless already changed)
-            if ($bOOKING->getRoomId() === $this) {
-                $bOOKING->setRoomId(null);
+            if ($booking->getRoomId() === $this) {
+                $booking->setRoomId(null);
             }
         }
 

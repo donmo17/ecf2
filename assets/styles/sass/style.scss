@@ -2,6 +2,7 @@
 $ff_logo: "Orbitron", sans-serif;
 $ff_default: "Roboto", sans-serif;
 $ff_title: "Volkhov", serif;
+$fc_span: #7BBCB0;
 
 // GLOBAL
 body{
@@ -74,8 +75,8 @@ header{
 
         &--text{
             position: absolute;
-            top: 100px;
-            left: 5%;
+            top: 150px;
+            left: 7%;
             z-index: 1;
             color: white;
             text-align: center;
@@ -84,8 +85,6 @@ header{
         }
         @media (min-width: 768px) {
             &--text{
-                top: 10%;
-                left: 10%;
                 width: 80%;
             }
         }
@@ -101,7 +100,7 @@ header{
             padding: 20px;
             background-color:rgb(240, 242, 243);
             label{
-                color: #7BBCB0;
+                color: $fc_span;
                 font-weight: 600;
                 margin-bottom: 10px;
             }
@@ -109,7 +108,7 @@ header{
                 padding: 5px 10px;
                 border: none;
                 &:focus{
-                    border: #7BBCB0 solid 1px;
+                    border: $fc_span solid 1px;
                 }
             }
         }
@@ -122,12 +121,29 @@ header{
         width: 80%;
         margin: 50px auto;
         text-align: center;
+        a{
+            text-decoration: none;
+        }
         .card{
             text-align: start;
             ul{
                 padding: 0;
                 li{
                     list-style: none;
+                }
+            }
+            img{
+                height: 250px;
+                object-fit: cover;
+            }
+            p {
+                text-align: end;
+                font-style: italic;
+                span{
+                color: $fc_span;
+                font-family: $ff_title;
+                font-size: 1.2em;
+                font-weight: bold;
                 }
             }
         }
