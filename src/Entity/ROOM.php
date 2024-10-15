@@ -9,6 +9,8 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ROOMRepository::class)]
+#[ORM\HasLifecycleCallbacks]
+
 class ROOM
 {
     #[ORM\Id]
@@ -64,6 +66,14 @@ class ROOM
     {
         $this->bOOKINGs = new ArrayCollection();
     }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        $this->created_at = new \DateTimeImmutable();
+    }
+
+   
 
     public function getId(): ?int
     {

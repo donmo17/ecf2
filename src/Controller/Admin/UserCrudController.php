@@ -29,7 +29,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('address'),
             TextField::new('zipCode'),
             TextField::new('city'),
-            //ImageField::new('image'),
+           // ImageField::new('image'),
             DateTimeField::new('created_at'),
         ];
     }
