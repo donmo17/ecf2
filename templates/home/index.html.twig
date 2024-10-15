@@ -49,7 +49,7 @@
 					<div class="col-6 col-lg-4 p-2">
 						<a href="{{ path('app_room_show', { 'id': room.id }) }}">
 							<div class="card">
-								<img src="{{ asset('images/' ~ room.image) }}" class="card-img-top" alt="Salle n°{{ room.id }}">
+								<img src="{{ asset( room.image) }}" class="card-img-top" alt="Salle n°{{ room.id }}">
 				
 								<div class="card-body">
 									<h5 class="card-title">{{ room.title }}</h5>
@@ -58,7 +58,7 @@
 										<li>Cuisine équipée</li>
 										<li>Espace extérieur</li>
 									</ul>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									{# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> #}
 									<div class="d-flex justify-content-between">
 										<ul>
 					                                            <li><small> Min : {{ room.capacity_min }} <i class="bi bi-people"></i></small></li>

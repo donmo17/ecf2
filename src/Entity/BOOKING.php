@@ -2,22 +2,22 @@
 
 namespace App\Entity;
 
-use App\Repository\BOOKINGRepository;
+use App\Repository\BookingRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Enum\BookingStatus;
 
 
-#[ORM\Entity(repositoryClass: BOOKINGRepository::class)]
-class BOOKING
+#[ORM\Entity(repositoryClass: BookingRepository::class)]
+class Booking
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'bOOKINGs')]
+    #[ORM\ManyToOne(inversedBy: 'bookings')]
     #[ORM\JoinColumn(nullable: false)]
     private ?ROOM $room_id = null;
 
