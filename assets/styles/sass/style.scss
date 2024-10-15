@@ -1,0 +1,139 @@
+// VARIABLES
+$ff_logo: "Orbitron", sans-serif;
+$ff_default: "Roboto", sans-serif;
+$ff_title: "Volkhov", serif;
+
+// GLOBAL
+body{
+    position: relative;
+    font-family: $ff_default;
+    h1, h2, h3, h4{
+        font-family: $ff_title;
+    }
+}
+
+// NAVBAR
+header{
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    backdrop-filter: blur(5px);
+    background-color: #ffffff80;
+    .nav{
+        z-index: 2;
+        padding: 20px 0;
+        &__container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            margin: 0 auto;
+            &--logo{
+                font-family: $ff_logo;
+                text-decoration: none;
+                color: inherit;
+                font-weight: bold;
+            }
+            &--link{
+                font-family: $ff_default;
+                text-decoration: none;
+                span{
+                    display: none;
+                }
+            }
+        }
+        @media (min-width: 768px) {
+            span {
+                display: inline;
+            }
+        }
+    }
+}
+.home {
+    &__hero {
+        // position: relative;
+        width: 100%;
+        height: 80vh;
+
+        &--figure {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden; 
+            img {
+                width: 100%;
+                height: auto;
+                position: absolute;
+                z-index: 0;
+                top: 0;
+                left: 0;
+                object-fit: contain;    
+            }
+        }
+
+        &--text{
+            position: absolute;
+            top: 100px;
+            left: 5%;
+            z-index: 1;
+            color: white;
+            text-align: center;
+            margin: auto;
+            width: 90%;
+        }
+        @media (min-width: 768px) {
+            &--text{
+                top: 10%;
+                left: 10%;
+                width: 80%;
+            }
+        }
+    }
+    &__form {
+        margin: 20px auto;
+        width: 70%;
+        &--content{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+            background-color:rgb(240, 242, 243);
+            label{
+                color: #7BBCB0;
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            input {
+                padding: 5px 10px;
+                border: none;
+                &:focus{
+                    border: #7BBCB0 solid 1px;
+                }
+            }
+        }
+        &--group{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    &__gallery{
+        width: 80%;
+        margin: 50px auto;
+        text-align: center;
+        .card{
+            text-align: start;
+            ul{
+                padding: 0;
+                li{
+                    list-style: none;
+                }
+            }
+        }
+        .row{
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    }
+}

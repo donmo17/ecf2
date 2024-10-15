@@ -1,0 +1,130 @@
+body {
+  position: relative;
+  font-family: "Roboto", sans-serif;
+}
+body h1, body h2, body h3, body h4 {
+  font-family: "Volkhov", serif;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.5019607843);
+}
+header .nav {
+  z-index: 2;
+  padding: 20px 0;
+}
+header .nav__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+header .nav__container--logo {
+  font-family: "Orbitron", sans-serif;
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+header .nav__container--link {
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+}
+header .nav__container--link span {
+  display: none;
+}
+@media (min-width: 768px) {
+  header .nav span {
+    display: inline;
+  }
+}
+
+.home__hero {
+  width: 100%;
+  height: 80vh;
+}
+.home__hero--figure {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.home__hero--figure img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.home__hero--text {
+  position: absolute;
+  top: 100px;
+  left: 5%;
+  z-index: 1;
+  color: white;
+  text-align: center;
+  margin: auto;
+  width: 90%;
+}
+@media (min-width: 768px) {
+  .home__hero--text {
+    top: 10%;
+    left: 10%;
+    width: 80%;
+  }
+}
+.home__form {
+  margin: 20px auto;
+  width: 70%;
+}
+.home__form--content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  background-color: rgb(240, 242, 243);
+}
+.home__form--content label {
+  color: #7BBCB0;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.home__form--content input {
+  padding: 5px 10px;
+  border: none;
+}
+.home__form--content input:focus {
+  border: #7BBCB0 solid 1px;
+}
+.home__form--group {
+  display: flex;
+  flex-direction: column;
+}
+.home__gallery {
+  width: 80%;
+  margin: 50px auto;
+  text-align: center;
+}
+.home__gallery .card {
+  text-align: start;
+}
+.home__gallery .card ul {
+  padding: 0;
+}
+.home__gallery .card ul li {
+  list-style: none;
+}
+.home__gallery .row {
+  max-width: 900px;
+  margin: 0 auto;
+}/*# sourceMappingURL=style.css.map */
