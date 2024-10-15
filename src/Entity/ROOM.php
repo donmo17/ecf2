@@ -65,6 +65,14 @@ class Room
         $this->bOOKINGs = new ArrayCollection();
     }
 
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        $this->created_at = new \DateTimeImmutable();
+    }
+
+   
+
     public function getId(): ?int
     {
         return $this->id;
