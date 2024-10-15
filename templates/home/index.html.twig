@@ -1,20 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}EventRoom : Accueil
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<main class="home">
+		<div class="home__hero">
+			<figure class="home__hero--figure">
+				<img src="./images/website/hero.jpg" alt="">
+			</figure>
+			<div class="home__hero--text">
+				<h1>Louez les salles correspondants à vos besoins</h1>
+				<p>Trouvez les meilleurs salles, au meilleurs prix sur notre site. Vous y trouverez tout ce dont vous avez besoins en quelques cliques.</p>
+				<a href="{{ path('app_room')}}">
+					<button class="btn btn-light">Toutes les salles</button>
+				</a>
+			</div>
+		</div>
+		<form action="" method="GET" class="home__form">
+			<div class="home__form--content shadow p-3 mb-5 bg-body-tertiary rounded">
+				<div class="home__form--group">
+					<label for="city">Ville / Code postal</label>
+					<input type="text" name="city" id="city" placeholder="Ville ou Code postal">
+				</div>
+				<div class="home__form--group">
+					<label for="check_in_date">Date d'entrée</label>
+					<input type="date" name="check_in_date" id="check_in_date">
+				</div>
+				<div class="home__form--group">
+					<label for="check_out_date">Date de sortie</label>
+					<input type="date" name="check_out_date" id="check_out_date">
+				</div>
+				<div class="">
+					<button type="submit" class="btn btn-warning rounded-5">
+						<i class="bi bi-search"></i>
+					</button>
+				</div>
+			</div>
+		</form>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <article class="home__gallery">
+            <h2>Découvrez nos dernières salles :</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, assumenda odit aut nulla, reprehenderit numquam nisi repudiandae sint consequatur distinctio dolorem exercitationem ratione? Molestiae, rem quam illum quod fuga nobis.</p>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/thedon/Desktop/reservation salle/roomreservation/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/Users/thedon/Desktop/reservation salle/roomreservation/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+            <div class="row">
+                <div class="col-6 col-lg-4 p-2">
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/14608968/pexels-photo-14608968.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Mariage Bohème</h5>
+                            <ul>
+                                <li>Lumière naturelle</li>
+                                <li>Cuisine équipée</li>
+                                <li>Espace extérieur</li>
+                            </ul>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <div class="d-flex justify-content-between"><a href="#" class="unstyled">Détail</a> <p><span>165 €</span><br>/jour</p></div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+	</main>
+
 {% endblock %}
