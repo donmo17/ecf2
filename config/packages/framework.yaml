@@ -14,3 +14,8 @@ when@test:
         test: true
         session:
             storage_factory_id: session.storage.factory.mock_file
+        csrf_protection: ~
+        form:
+            csrf_protection:
+                enabled: true
+                field_name: 'new_booking'

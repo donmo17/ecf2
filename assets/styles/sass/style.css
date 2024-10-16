@@ -7,6 +7,8 @@ body h1, body h2, body h3, body h4 {
 }
 
 header {
+  margin: 0;
+  padding: 0;
   position: fixed;
   top: 0;
   z-index: 1;
@@ -143,4 +145,57 @@ header .nav__container--link span {
 .home__gallery .row {
   max-width: 900px;
   margin: 0 auto;
+}
+
+.room {
+  margin: 90px 0;
+}
+.room__figure {
+  width: 100%;
+  height: 250px;
+}
+.room__figure--image {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.room__content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 70px auto;
+}
+.room__content article, .room__content form {
+  width: 100%;
+  padding: 40px;
+}
+.room__content--header {
+  display: flex;
+  justify-content: space-between;
+}
+.room__content--header h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.room__content--header p span {
+  color: #7BBCB0;
+  font-family: "Volkhov", serif;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.room__content form {
+  background-color: #f3f1f1;
+}
+@media (min-width: 768px) {
+  .room__content {
+    width: 80%;
+  }
+  .room article {
+    width: 60%;
+  }
+  .room form {
+    width: 35%;
+  }
 }/*# sourceMappingURL=style.css.map */

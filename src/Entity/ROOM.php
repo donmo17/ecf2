@@ -53,7 +53,7 @@ class ROOM
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
-   
+
 
     /**
      * @var Collection<int, Booking>
@@ -72,7 +72,7 @@ class ROOM
         $this->created_at = new \DateTimeImmutable();
     }
 
-   
+
 
     public function getId(): ?int
     {
@@ -253,5 +253,4 @@ class ROOM
 
         return $this;
     }
-
 }

@@ -88,8 +88,8 @@ class AppFixtures extends Fixture
                 ->setZipCode($zipCode[$city])
                 ->setCapacityMin($capacity)
                 ->setCapacityMax($capacityArr[$capacity])
-                ->setErgonomic([$faker->randomElements($ergonomic), $faker->randomElements($ergonomic), $faker->randomElements($ergonomic)])
-                ->setEquipment([$faker->randomElements($equipment), $faker->randomElements($equipment), $faker->randomElements($equipment)])
+                ->setErgonomic([$faker->randomElement($ergonomic), $faker->randomElement($ergonomic), $faker->randomElement($ergonomic)])
+                ->setEquipment([$faker->randomElement($equipment), $faker->randomElement($equipment), $faker->randomElement($equipment)])
                 ->setImage($faker->randomElement($images))
             ;
             $manager->persist($room);

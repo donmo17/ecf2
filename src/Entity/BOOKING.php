@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\BOOKINGRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Enum\BookingStatus;
 use Doctrine\ORM\Mapping as ORM;
-use App\Enum\BOOKINGStatus;
+use App\Repository\BOOKINGRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 #[ORM\Entity(repositoryClass: BOOKINGRepository::class)]
@@ -33,7 +33,7 @@ class BOOKING
     private ?float $billing = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $status = null;
+    private ?BookingStatus $status = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $check_in_at = null;
@@ -50,9 +50,12 @@ class BOOKING
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     private ?User $user_id = null;
 
+
     public function __construct()
     {
         $this->nOTIFICATIONs = new ArrayCollection();
+        $this->is_validate = false;
+        $this->status = 'En attente';
     }
 
     
@@ -109,8 +112,6 @@ class BOOKING
         return $this;
     }
 
-
-  
 
     public function getStatus(): ?BookingStatus
     {

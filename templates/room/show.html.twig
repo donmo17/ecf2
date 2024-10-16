@@ -1,6 +1,62 @@
+{% extends 'base.html.twig' %}
 
+{% block title %}EventRoom : {{  room.title }}{% endblock %}
+
+{% block body %}
+<main class="room">
+   <figure class="room__figure">
+      <img class="room__figure--image" src="https://images.pexels.com/photos/2693212/pexels-photo-2693212.png?auto=compress&cs=tinysrgb&w=1920" alt="illustration">
+   </figure>
+   <div class="room__content shadow p-3 mb-5 bg-body-tertiary rounded">
+      <article>
+         <div class="room__content--header">
+            <div>
+               <h1>{{ room.title }}</h1>
+               <p><i>{{ room.capacityMin }} <i class="bi bi-people"></i> - {{ room.capacityMax }} <i class="bi bi-people"></i></i></p>
+            </div>
+            <p><span>{{room.price }} €</span>/jour</p>
+         </div>
+         
+         <p>{{ room.description }}</p>
+         <p><i class="bi bi-building"></i> Ergonomie :</p>
+         <ul>
+            {% for ergo in room.ergonomic %}
+            <li>{{ ergo }}</li>
+            {% endfor %}
+         </ul>
+         <p><i class="bi bi-lightbulb"></i> Equipement :</p>
+         <ul>
+            {% for eqt in room.equipment %}
+               <li>{{ eqt }}</li>
+            {% endfor %}
+         </ul>
+      </article>
+      <form action="{{ path('app_booking_new', { id: room.id }) }}" method="POST" class="room__content--form shadow-sm p-3 mb-5 rounded">
+         <legend><h5 class="text-center">Réservez votre salle dés maintenant</h5></legend>
+
+         <input type="hidden" name="token" value="{{ csrf_token('new_booking') }}">
+         
+         <div class="room__content--group">
+            <label for="check_in_date">Date d'entrée</label>
+            <input type="date" name="check_in_date" id="check_in_date">
+         </div>
+         
+         <div class="room__content--group">
+            <label for="check_out_date">Date de sortie</label>
+            <input type="date" name="check_out_date" id="check_out_date">
+         </div>
+
+         <p>Prix par jour : <span id="roomPrice">{{ room.price }}</span> €</p>
+         <p>Total pour le séjour : <span id="totalPrice">0 €</span></p>
+         
+         <button type="submit" class="btn btn-success">Réserver</button>
+      </form>
+   </div>
+</main>
 		<h2>{{  room.title }}</h2>
            <p> {{  room.price }}</p>
         <p>{{  room.description }}</p>
+{% endblock %}
+
 
 		
