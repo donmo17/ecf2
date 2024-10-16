@@ -54,8 +54,10 @@ class BOOKING
     public function __construct()
     {
         $this->nOTIFICATIONs = new ArrayCollection();
+        $this->status = BookingStatus::Pending; // Ajout de l'initialisation
+
         $this->is_validate = false;
-        $this->status = 'En attente';
+        $this->status = BookingStatus::Pending; // Correction ici
     }
 
     
