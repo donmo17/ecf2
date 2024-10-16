@@ -14,44 +14,59 @@
                <h1>{{ room.title }}</h1>
                <p><i>{{ room.capacityMin }} <i class="bi bi-people"></i> - {{ room.capacityMax }} <i class="bi bi-people"></i></i></p>
             </div>
-            <p><span>{{room.price }} €</span>/jour</p>
+            <p><span>{{ room.price }} €</span>/jour</p>
          </div>
          
          <p>{{ room.description }}</p>
-         <p><i class="bi bi-building"></i> Ergonomie :</p>
-         <ul>
-            {% for ergo in room.ergonomic %}
-            <li>{{ ergo }}</li>
-            {% endfor %}
-         </ul>
-         <p><i class="bi bi-lightbulb"></i> Equipement :</p>
-         <ul>
-            {% for eqt in room.equipment %}
-               <li>{{ eqt }}</li>
-            {% endfor %}
-         </ul>
+         <div class="row justify-content-between room__content--detail">
+            <div class="col-12 col-lg-6">
+               <p><i class="bi bi-building"></i> Ergonomie :</p>
+               <ul>
+                  {% for ergo in room.ergonomic %}
+                  <li>{{ ergo }}</li>
+                  {% endfor %}
+               </ul>
+               <p><i class="bi bi-lightbulb"></i> Equipement :</p>
+               <ul>
+                  {% for eqt in room.equipment %}
+                     <li>{{ eqt }}</li>
+                  {% endfor %}
+               </ul>
+            </div>
+            <figure class="col-12 col-lg-5">
+               <img src="{{ room.image }}" alt="{{ room.title }}">
+            </figure>
+         </div>
       </article>
-      <form action="{{ path('app_booking_new', { id: room.id }) }}" method="POST" class="room__content--form shadow-sm p-3 mb-5 rounded">
-         <legend><h5 class="text-center">Réservez votre salle dés maintenant</h5></legend>
+      <section class="shadow-sm p-3 mb-5 rounded">
+         <form action="{{ path('app_booking_new', { id: room.id }) }}" method="POST" class="room__content--form">
+            <legend><h5 class="text-center">Réservez votre salle dés maintenant</h5></legend>
 
-         <input type="hidden" name="token" value="{{ csrf_token('new_booking') }}">
-         
-         <div class="room__content--group">
-            <label for="check_in_date">Date d'entrée</label>
-            <input type="date" name="check_in_date" id="check_in_date">
-         </div>
-         
-         <div class="room__content--group">
-            <label for="check_out_date">Date de sortie</label>
-            <input type="date" name="check_out_date" id="check_out_date">
-         </div>
+            <input type="hidden" name="token" value="{{ csrf_token('new_booking') }}">
+            
+            <div class="room__content--group">
+               <label for="check_in_date">Date d'entrée</label>
+               <input type="date" name="check_in_date" id="check_in_date">
+            </div>
+            
+            <div class="room__content--group">
+               <label for="check_out_date">Date de sortie</label>
+               <input type="date" name="check_out_date" id="check_out_date">
+            </div>
 
-         <p>Prix par jour : <span id="roomPrice">{{ room.price }}</span> €</p>
-         <p>Total pour le séjour : <span id="totalPrice">0 €</span></p>
-         <div class="button">
-            <button type="submit" class="btn btn-success">Réserver</button>
+            <p>Prix par jour : <span id="roomPrice">{{ room.price }}</span> €</p>
+            <p>Total pour le séjour : <span id="totalPrice">0 €</span></p>
+            <div class="button">
+               <button type="submit" class="btn btn-success">Réserver</button>
+            </div>
+         </form>
+         <div class="room__content--address">
+            <h6>Coordonnées</h6>
+            <p>{{ room.title }}<br/>
+            {{ room.address }}<br/>
+            {{ room.zipCode }} {{ room.city }}</p>
          </div>
-      </form>
+      </section>
    </div>
 </main>
 {% endblock %}

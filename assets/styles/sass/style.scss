@@ -43,9 +43,24 @@ header{
             }
             &--link{
                 font-family: $ff_default;
-                text-decoration: none;
+                text-decoration: none ;
                 span{
                     display: none;
+                }
+            }
+            &--li:hover{
+                color: #3e4a48;
+            }
+            ul{
+                display: flex;
+                gap: 15px;
+                align-items: center;
+            }
+            a{
+                text-decoration: none;
+                color: inherit;
+                li{
+                    list-style: none;
                 }
             }
         }
@@ -175,7 +190,7 @@ header{
         flex-wrap: wrap;
         width: 90%;
         margin: 70px auto;
-        article, form{
+        article, section{
             width: 100%;
             padding: 40px !important;
         }
@@ -195,7 +210,16 @@ header{
                 }
             }
         }
-        form{
+        &--detail{
+            figure{
+                img{
+                    object-fit: cover;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        section{
             background-color:#f3f1f1;
             padding: 50px;
             border: 1px solid rgb(207, 207, 207);
@@ -213,6 +237,9 @@ header{
             flex-direction: column;
             width: 100%;
             margin-bottom: 15px;
+        }
+        &--address{
+            margin-top: 25px;
         }
     }
     // PAGE ./room/index.html.twig - URL'/room'
@@ -301,7 +328,7 @@ header{
     @media (min-width: 768px) {
         &__content{
             width: 80%;
-            form{
+            section{
                 width: 35%;
             }
         }
@@ -309,5 +336,39 @@ header{
             width: 60%;
         }
     }
+}
+.login{
+    margin: 90px 0;
+    
+    &__content{
+        display: flex;
+        flex-wrap: wrap;
+        width: 80%;
+        height: 70vh;
+        border: #7BBCB0 1px solid;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 50px auto;
+    }
 
+    &__image{
+        object-fit: cover;
+        display: none;
+        border-radius: 5px;
+    }
+
+    &__form{
+        margin: auto;
+    }
+
+    @media (min-width: 768px) {
+        &__content{
+            flex-wrap: nowrap;
+            width: 60%;
+        }
+        &__image{
+            display: inline-block;
+        }
+        
+    }
 }

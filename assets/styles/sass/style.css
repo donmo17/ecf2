@@ -44,6 +44,21 @@ header .nav__container--link {
 header .nav__container--link span {
   display: none;
 }
+header .nav__container--li:hover {
+  color: #3e4a48;
+}
+header .nav__container ul {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+header .nav__container a {
+  text-decoration: none;
+  color: inherit;
+}
+header .nav__container a li {
+  list-style: none;
+}
 @media (min-width: 768px) {
   header .nav span {
     display: inline;
@@ -170,7 +185,7 @@ header .nav__container--link span {
   width: 90%;
   margin: 70px auto;
 }
-.room__content article, .room__content form {
+.room__content article, .room__content section {
   width: 100%;
   padding: 40px !important;
 }
@@ -188,16 +203,22 @@ header .nav__container--link span {
   font-size: 1.2em;
   font-weight: bold;
 }
-.room__content form {
+.room__content--detail figure img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.room__content section {
   background-color: #f3f1f1;
   padding: 50px;
   border: 1px solid rgb(207, 207, 207);
 }
-.room__content form legend {
+.room__content section legend {
   margin: 20px auto;
   color: #7BBCB0;
 }
-.room__content form .button {
+.room__content section .button {
   display: flex;
   justify-content: center;
 }
@@ -206,6 +227,9 @@ header .nav__container--link span {
   flex-direction: column;
   width: 100%;
   margin-bottom: 15px;
+}
+.room__content--address {
+  margin-top: 25px;
 }
 .room__filter {
   margin: 50px 5%;
@@ -294,10 +318,42 @@ header .nav__container--link span {
   .room__content {
     width: 80%;
   }
-  .room__content form {
+  .room__content section {
     width: 35%;
   }
   .room article {
     width: 60%;
+  }
+}
+
+.login {
+  margin: 90px 0;
+}
+.login__content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  height: 70vh;
+  border: #7BBCB0 1px solid;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 50px auto;
+}
+.login__image {
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: none;
+  border-radius: 5px;
+}
+.login__form {
+  margin: auto;
+}
+@media (min-width: 768px) {
+  .login__content {
+    flex-wrap: nowrap;
+    width: 60%;
+  }
+  .login__image {
+    display: inline-block;
   }
 }/*# sourceMappingURL=style.css.map */

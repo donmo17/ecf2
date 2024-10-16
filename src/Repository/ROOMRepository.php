@@ -17,6 +17,16 @@ class ROOMRepository extends ServiceEntityRepository
         parent::__construct($registry, ROOM::class);
     }
 
+    public function findByCity(string $city): QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        $qb->andWhere('r.city = :city')
+        ->setParameter('city', $city);
+
+        return $qb;
+    }
+    
     public function findByDate(array $dates = []): QueryBuilder
     {
         $qb = $this->createQueryBuilder('r');

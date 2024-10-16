@@ -1,8 +1,28 @@
 <header>
-    <nav class="nav">
-        <div class="nav__container">
-            <a href="{{ path('app_home')}}" class="nav__container--logo">EventRoom</a>
-            <a href="{{ path('app_login') }}" class="nav__container--link"><button class="btn btn-warning"><i class="bi bi-person"></i><span> Connexion</span></button></a>
-        </div>
-    </nav>
+	<nav class="nav">
+		<div class="nav__container">
+			<a href="{{ path('app_home')}}" class="nav__container--logo">EventRoom</a>
+			<ul>
+                {% if app.user %}
+					<a href="{{ path('app_profile') }}" class="nav__container--link">
+						<li class="nav__container--li"><i class="bi bi-person-bounding-box"></i> <span> Mon compte</span></li>
+					</a>
+				{% endif %}
+
+				<a href="{% if app.user %}{{ path('app_logout') }}{% else %}{{ path('app_login') }}{% endif %}" class="nav__container--link">
+					<li>
+                    <button class="btn  btn-{% if app.user %}dark{% else %}warning{% endif %}">
+
+						<i class="bi bi-person"></i>
+						<span>{% if app.user %} Déc{% else %} C{% endif %}onnexion</span>
+					</button>
+                    </li>
+				</a>
+                
+            </ul>
+				
+
+			</div>
+		</div>
+	</nav>
 </header>

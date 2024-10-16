@@ -18,7 +18,7 @@
 				</a>
 			</div>
 		</div>
-		<form action="" method="GET" class="home__form">
+		<form action="{{ path('app_room')}}" method="GET" class="home__form">
 			<div class="home__form--content shadow p-3 mb-5 bg-body-tertiary rounded">
 				<div class="home__form--group">
 					<label for="city">Ville</label>
@@ -53,6 +53,7 @@
 				
 								<div class="card-body">
 									<h5 class="card-title">{{ room.title }}</h5>
+									<p><i>{{ room.city }}</i></p>
 									<ul>
 										<li>Lumière naturelle</li>
 										<li>Cuisine équipée</li>

@@ -61,10 +61,10 @@
 						</h2>
 						<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFilter">
 							<div class="accordion-body">
-								<form action="" method="get" class="room__filter--form">
+								<form action="{{ path('app_room')}}" method="get" class="room__filter--form">
                                     <div class="room__filter--group">
-                                        <label for="">Ville</label>
-                                        <input type="text" name="">
+                                        <label for="city">Ville</label>
+                                        <input type="text" name="city" placeholder="Paris">
                                     </div>
                                     <div class="button">
                                         <button type="submit" class="btn btn-warning"><i class="bi bi-search"></i></button>
@@ -143,7 +143,10 @@
 							<img src="{{ asset( room.image) }}" alt="Salle n°{{ room.id }}">
 							<div class="room__filter--content">
 								<div class="room__filter--text">
-									<h5>{{ room.title }}</h5>
+									<div class="d-flex justify-content-between">
+										<h5>{{ room.title }}</h5>
+										<p class="m-0 p-0"><i>{{ room.city }}</i></p>
+									</div>
 									<div class="d-none d-xl-inline-flex d-flex justify-content-between ">
 										<p>
 											<i class="bi bi-building"></i>
@@ -171,6 +174,8 @@
 							</div>
 						</div>
 					</a>
+				{% else %}
+				<p>Aucun résultat trouvé.</p>
 				{% endfor %}
                 {{ pagerfanta(rooms) }}
 			</div>
