@@ -13,7 +13,9 @@ class HomeController extends AbstractController
     public function index(ROOMRepository $rooms): Response
 
     {
-         $room  = $rooms->findAll() ;
+        // Récupérer les 6 rooms les plus récentes (tri par 'createdAt' décroissant)
+        $room = $rooms->findBy([], ['created_at' => 'DESC'], 6);
+
         return $this->render('home/index.html.twig', [
              'rooms' => $room 
         ]);

@@ -48,14 +48,12 @@
 
          <p>Prix par jour : <span id="roomPrice">{{ room.price }}</span> €</p>
          <p>Total pour le séjour : <span id="totalPrice">0 €</span></p>
-         
-         <button type="submit" class="btn btn-success">Réserver</button>
+         <div class="button">
+            <button type="submit" class="btn btn-success">Réserver</button>
+         </div>
       </form>
    </div>
 </main>
-		<h2>{{  room.title }}</h2>
-           <p> {{  room.price }}</p>
-        <p>{{  room.description }}</p>
 {% endblock %}
 
 

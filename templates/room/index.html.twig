@@ -1,20 +1,180 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RoomController!{% endblock %}
+{% block title %}Hello RoomController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<main class="room">
+		<figure class="room__figure">
+			<img class="room__figure--image" src="https://images.pexels.com/photos/2693212/pexels-photo-2693212.png?auto=compress&cs=tinysrgb&w=1920" alt="illustration">
+		</figure>
+		<div class="row room__filter">
+			<div class="col-12 col-lg-3 shadow p-3 mb-5 bg-body-tertiary rounded">
+				<h5 class="text-center">Filtrer ma recherche</h5>
+                
+                <form action="" method="get" class="room__filter--form">
+                    <div class="room__filter--group">
+                        <label for="">Date d'entrée</label>
+                        <input type="date" name="">
+                    </div>
+                    <div class="room__filter--group">
+                        <label for="">Date de sortie</label>
+                        <input type="date" name="">
+                    </div>
+                    <div class="button">
+                        <button type="submit" class="btn btn-warning">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+				<div class="accordion" id="accordionFilter">
+					<div class="accordion-item">
+						<h2 class="accordion-header">
+							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+								Par capacité
+							</button>
+						</h2>
+						<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFilter">
+							<div class="accordion-body">
+                                <form action="" method="get" class="room__filter--form">
+                                    <div class="room__filter--group">
+                                        <label for="">Min</label>
+                                        <input type="text" name="">
+                                    </div>
+                                    <div class="room__filter--group">
+                                        <label for="">Max</label>
+                                        <input type="text" name="">
+                                    </div>
+                                    <div class="button">
+                                        <button type="submit" class="btn btn-warning"><i class="bi bi-search"></i></button>
+                                    </div>
+                                </form>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								Par ville:
+							</button>
+						</h2>
+						<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFilter">
+							<div class="accordion-body">
+								<form action="" method="get" class="room__filter--form">
+                                    <div class="room__filter--group">
+                                        <label for="">Ville</label>
+                                        <input type="text" name="">
+                                    </div>
+                                    <div class="button">
+                                        <button type="submit" class="btn btn-warning"><i class="bi bi-search"></i></button>
+                                    </div>
+                                </form>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+								Ergonomie & Equipements
+							</button>
+						</h2>
+						<div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFilter">
+							<div class="accordion-body">
+								<form action="" method="get" class="room__filter--form">
+                                    <div class="room__filter--group">
+                                        <h6>Ergonomie</h6>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Default checkbox
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Checked checkbox
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="room__filter--group">
+                                        <h6>Equipement</h6>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Default checkbox
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Checked checkbox
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="button">
+                                        <button type="submit" class="btn btn-warning"><i class="bi bi-search"></i></button>
+                                    </div>
+                                </form>
+							</div>
+						</div>
+					</div>
+				</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/thedon/Desktop/reservation salle/roomreservation/src/Controller/RoomController.php</code></li>
-        <li>Your template at <code>/Users/thedon/Desktop/reservation salle/roomreservation/templates/room/index.html.twig</code></li>
-    </ul>
-</div>
+				
+			</div>
+
+			<div class="col-12 col-lg-9 room__filter--results">
+
+                <div class="room__filter--search">
+                    <form action="" method="">
+                        <div class="d-flex">
+                            <input type="text" name="" id="" placeholder="Votre recherche">
+                            <button type="submit" class="btn btn-warning"><i class="bi bi-search"></i></button>
+                        </div>
+                    </form>
+
+                    <p>Résultats : {{ rooms|length }}</p>
+                </div>
+
+				{% for room in rooms %}
+					<a href="{{ path('app_room_show', { 'id': room.id }) }}">
+						<div class="room__filter--card">
+							<img src="{{ asset( room.image) }}" alt="Salle n°{{ room.id }}">
+							<div class="room__filter--content">
+								<div class="room__filter--text">
+									<h5>{{ room.title }}</h5>
+									<div class="d-none d-xl-inline-flex d-flex justify-content-between ">
+										<p>
+											<i class="bi bi-building"></i>
+											Ergonomie :
+											<br>{{ room.ergonomic[0] }}
+											...</p>
+										<p>
+											<i class="bi bi-lightbulb"></i>
+											Equipement :
+											<br>{{ room.equipment[0] }}
+											...</p>
+										<p>
+											<i>{{ room.capacityMin }}
+												<i class="bi bi-people"></i>
+												-
+												{{ room.capacityMax }}
+												<i class="bi bi-people"></i>
+											</i>
+										</p>
+									</div>
+								</div>
+								<p class="w-20">
+									<span>{{ room.price }}
+										€</span><br>/jour</p>
+							</div>
+						</div>
+					</a>
+				{% endfor %}
+                {{ pagerfanta(rooms) }}
+			</div>
+		</div>
+	</main>
+
 {% endblock %}

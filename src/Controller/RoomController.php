@@ -2,18 +2,29 @@
 
 namespace App\Controller;
 
+use Pagerfanta\Pagerfanta;
 use App\Repository\ROOMRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Pagerfanta\Doctrine\ORM\QueryAdapter;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class RoomController extends AbstractController
 {
     #[Route('/room', name: 'app_room')]
-    public function index(): Response
+    public function index(Request $request, ROOMRepository $repo): Response
     {
+        $rooms = Pagerfanta::createForCurrentPageWithMaxPerPage(
+            new QueryAdapter($repo->createQueryBuilder('b')),
+            $request->query->get('page', 1),
+            10
+        );
+
+        
+
         return $this->render('room/index.html.twig', [
-            'controller_name' => 'RoomController',
+            'rooms' => $rooms,
         ]);
     }
 
