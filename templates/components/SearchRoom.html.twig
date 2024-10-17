@@ -1,0 +1,52 @@
+
+    <div {{ attributes }} class="col-12 col-lg-9 room__filter--results"> 
+        <div class="room__filter--search">
+            <div class="d-flex">
+                <input type="text" data-model="query" name="" id="" placeholder="Votre recherche ">
+            </div>
+            {# <p>Résultats : {{ rooms|length }}</p> #} 
+        </div>
+
+        {% set rooms = this.Rooms %}
+        {% for item in rooms %}
+            <a href="{{ path('app_room_show', { 'id': item.id }) }}">
+                <div class="room__filter--card">
+                    <img src="{{ asset(item.image) }}" alt="Salle n°{{ item.id }}">
+                    <div class="room__filter--content">
+                        <div class="room__filter--text">
+                            <div class="d-flex justify-content-between">
+                                <h5>{{ item.title }}</h5>
+                                <p class="m-0 p-0"><i>{{ item.city }}</i></p>
+                            </div>
+                            <div class="d-none d-xl-inline-flex d-flex justify-content-between">
+                                <p>
+                                    <i class="bi bi-building"></i>
+                                    Ergonomie :
+                                    <br>{{ item.ergonomic[0] }} ...
+                                </p>
+                                <p>
+                                    <i class="bi bi-lightbulb"></i>
+                                    Equipement :
+                                    <br>{{ item.equipment[0] }} ...
+                                </p>
+                                <p>
+                                    <i>{{ item.capacityMin }}
+                                        <i class="bi bi-people"></i> -
+                                        {{ item.capacityMax }}
+                                        <i class="bi bi-people"></i>
+                                    </i>
+                                </p>
+                            </div>
+                        </div>
+                        <p class="w-20">
+                            <span>{{ item.price }} €</span><br>/jour
+                        </p>
+                    </div>
+                </div>
+            </a>
+			   
+        {% endfor %}
+        
+           {#{ pagerfanta(rooms) }#}
+    </div>
+</div>
