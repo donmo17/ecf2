@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class RoomController extends AbstractController
 {
-    #[Route('/room', name: 'app_room')]
+    #[Route('/room', name: 'app_room' )]
     public function index(Request $request, ROOMRepository $repo): Response
     {
         $rooms = Pagerfanta::createForCurrentPageWithMaxPerPage(
