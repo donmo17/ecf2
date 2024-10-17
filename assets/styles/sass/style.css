@@ -333,7 +333,7 @@ header .nav__container a li {
   display: flex;
   flex-wrap: wrap;
   width: 80%;
-  height: 70vh;
+  min-height: 70vh;
   border: #7BBCB0 1px solid;
   border-radius: 5px;
   overflow: hidden;
@@ -342,6 +342,8 @@ header .nav__container a li {
 .login__image {
   -o-object-fit: cover;
      object-fit: cover;
+  margin: 0;
+  height: 100%;
   display: none;
   border-radius: 5px;
 }

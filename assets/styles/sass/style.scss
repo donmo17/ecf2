@@ -344,7 +344,7 @@ header{
         display: flex;
         flex-wrap: wrap;
         width: 80%;
-        height: 70vh;
+        min-height: 70vh;
         border: #7BBCB0 1px solid;
         border-radius: 5px;
         overflow: hidden;
@@ -353,6 +353,8 @@ header{
 
     &__image{
         object-fit: cover;
+        margin: 0;
+        height: 100%;
         display: none;
         border-radius: 5px;
     }
