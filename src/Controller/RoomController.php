@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class RoomController extends AbstractController
 {
@@ -44,7 +45,7 @@ class RoomController extends AbstractController
 
 
     #[Route('/room/show/{id}', name: 'app_room_show', methods: ['GET', 'POST'])]
-    public function show($id , ROOMRepository $rooms, Request $request): Response
+    public function show($id , ROOMRepository $rooms, Request $request, Security $security): Response
     {
 
         $room = $rooms->findOneBy(['id' => $id]);
@@ -54,6 +55,15 @@ class RoomController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Vérifier si utilisateur est connecté
+            $user = $security->getUser();
+
+            // s'il n'est pas connecté rediriger sur 'app_login'
+            if(!$user){
+                return $this->redirectToRoute('app_login');
+            }
+            // Sinon enregistrer le nouveau booking
 
         }
       
