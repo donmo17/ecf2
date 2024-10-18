@@ -5,4 +5,16 @@
 {% block body %}
     <h1>{{ 'Welcome to our multilingual website'|trans }}</h1>
     <p>{{ 'This is a paragraph that will be translated'|trans }}</p>
+
+    <div class="mt-4">
+        {% if app.user %}
+            <p class="alert alert-info">
+                {{ 'You are logged in as'|trans }} : <strong>{{ app.user.email }}</strong>
+            </p>
+        {% else %}
+            <p class="alert alert-warning">
+                {{ 'No user is currently logged in'|trans }}
+            </p>
+        {% endif %}
+    </div>
 {% endblock %}
