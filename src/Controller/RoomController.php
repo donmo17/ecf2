@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\BOOKING;
+use App\Form\BookingType;
 use Pagerfanta\Pagerfanta;
 use App\Repository\ROOMRepository;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
@@ -41,14 +43,22 @@ class RoomController extends AbstractController
     }
 
 
-    #[Route('/room/show/{id}', name: 'app_room_show')]
-    public function show( $id , ROOMRepository $rooms): Response
+    #[Route('/room/show/{id}', name: 'app_room_show', methods: ['GET', 'POST'])]
+    public function show($id , ROOMRepository $rooms, Request $request): Response
     {
-        $room = $rooms->findOneBy(['id' => $id]);        
 
+        $room = $rooms->findOneBy(['id' => $id]);
+        $booking = new BOOKING();
+
+        $form = $this->createForm(BookingType::class, $booking);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+        }
       
         return $this->render('room/show.html.twig', [
-            'controller_name' => 'RoomController',
+            'BookingForm' => $form,
              'room'=>$room
         ]);
     }

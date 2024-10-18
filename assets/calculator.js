@@ -1,7 +1,7 @@
 function calculateTotal() {
     // Récupérer les valeurs des champs de date
-    const checkin = new Date(document.getElementById('check_in_date').value);
-    const checkout = new Date(document.getElementById('check_out_date').value);
+    const checkin = new Date(document.getElementById('booking_check_in_at').value);
+    const checkout = new Date(document.getElementById('booking_check_out_at').value);
 
     // Récupérer le prix de la chambre (remplacer par {{ room.price }} si nécessaire)
     const roomPrice = parseFloat(document.getElementById('roomPrice').innerText);
@@ -21,8 +21,8 @@ function calculateTotal() {
 }
 window.addEventListener('change', function() {
     // Récupérer les champs de date
-    const checkinField = document.getElementById('check_in_date');
-    const checkoutField = document.getElementById('check_out_date');
+    const checkinField = document.getElementById('booking_check_in_at');
+    const checkoutField = document.getElementById('booking_check_out_at');
 
     // Ajouter l'écouteur d'événement pour recalculer lorsque l'utilisateur modifie les dates
     checkinField.addEventListener('change', calculateTotal);

@@ -43,27 +43,27 @@
          </div>
       </article>
       <section class="shadow-sm p-3 mb-5 rounded">
-         <form action="{{ path('app_booking_new', { id: room.id }) }}" method="POST" class="room__content--form">
+         <div class="room__content--form">
             <legend><h5 class="text-center">Réservez votre salle dés maintenant</h5></legend>
 
             <input type="hidden" name="token" value="{{ csrf_token('new_booking') }}">
-            
-            <div class="room__content--group">
-               <label for="check_in_date">Date d'entrée</label>
-               <input type="date" name="check_in_date" id="check_in_date">
-            </div>
-            
-            <div class="room__content--group">
-               <label for="check_out_date">Date de sortie</label>
-               <input type="date" name="check_out_date" id="check_out_date">
-            </div>
+            {{ form_start(BookingForm) }}
+               <div class="room__content--group">
+                  {{ form_row(BookingForm.check_in_at) }}
+               </div>
+               <div class="room__content--group">
+                  {{ form_row(BookingForm.check_out_at) }}
+               </div>
+               <p>Prix par jour : <span id="roomPrice">{{ room.price }}</span> €</p>
+               <p>Total pour le séjour : <span id="totalPrice">0 €</span></p>
+               <div class="button">
+                  <button type="submit" class="btn btn-success">Réserver</button>
+               </div>
+            {{ form_end(BookingForm) }}
 
-            <p>Prix par jour : <span id="roomPrice">{{ room.price }}</span> €</p>
-            <p>Total pour le séjour : <span id="totalPrice">0 €</span></p>
-            <div class="button">
-               <button type="submit" class="btn btn-success">Réserver</button>
-            </div>
-         </form>
+
+            </form>
+         </div>
          <div class="room__content--address">
             <h6>Coordonnées</h6>
             <p>{{ room.title }}<br/>

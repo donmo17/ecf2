@@ -16,14 +16,18 @@ class BookingType extends AbstractType
             ->add('check_in_at', DateType::class, [
                 'attr' => [
                     'id' => 'check_in_at',
+                    'class' => 'w-100'
                 ],
                 'widget' => 'single_text',
+                'label' => "Date d'entrée  ",
             ])
             ->add('check_out_at', DateType::class, [
                 'attr' => [
                     'id' => 'check_out_at',
+                    'class' => 'w-100'
                 ],
                 'widget' => 'single_text',
+                'label' => "Date de sortie  ",
             ])
         ;
     }
