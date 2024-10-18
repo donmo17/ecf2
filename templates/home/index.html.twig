@@ -18,27 +18,38 @@
 				</a>
 			</div>
 		</div>
-		<form action="{{ path('app_room')}}" method="GET" class="home__form">
+		<div class="home__form">
 			<div class="home__form--content shadow p-3 mb-5 bg-body-tertiary rounded">
-				<div class="home__form--group">
-					<label for="city">Ville</label>
-					<input type="text" name="city" id="city" placeholder="Ville">
+			<form action="{{ path('app_room')}}" method="GET">
+					<div class="home__form--group">
+						<label for="city">Ville</label>
+						<input type="text" name="city" id="city" placeholder="Ville">
+					</div>
+					<div class="">
+						<button type="submit" class="btn btn-warning rounded-5">
+							<i class="bi bi-search"></i>
+						</button>
+					</div>
+			</form>
+			<form action="{{ path('app_room')}}" method="GET">
+			
+					<div class="home__form--group">
+						<label for="checkin">Date d'entrée</label>
+						<input type="date" name="checkin" id="checkin">
+					</div>
+					<div class="home__form--group">
+						<label for="checkout">Date de sortie</label>
+						<input type="date" name="checkout" id="checkout">
+					</div>
+					<div class="">
+						<button type="submit" class="btn btn-warning rounded-5">
+							<i class="bi bi-search"></i>
+						</button>
+					</div>
+				
+			</form>
 				</div>
-				<div class="home__form--group">
-					<label for="check_in_date">Date d'entrée</label>
-					<input type="date" name="check_in_date" id="check_in_date">
-				</div>
-				<div class="home__form--group">
-					<label for="check_out_date">Date de sortie</label>
-					<input type="date" name="check_out_date" id="check_out_date">
-				</div>
-				<div class="">
-					<button type="submit" class="btn btn-warning rounded-5">
-						<i class="bi bi-search"></i>
-					</button>
-				</div>
-			</div>
-		</form>
+		</div>
 
 		<article class="home__gallery">
 			<h2>Découvrez nos dernières salles :</h2>
@@ -50,8 +61,8 @@
 						<a href="{{ path('app_room_show', { 'id': room.id }) }}">
 							<div class="card">
 								
-								{% set image_url = (room.image|slice(0, 4) == 'http') ? room.image : 'images/' ~ room.image %} <img src="{{ image_url }}" alt="Room Image">
-               					<img src="{{ asset(room.image) }}" alt="{{ room.title }}"  class="card-img-top">
+								{% set image_url = (room.image|slice(0, 4) == 'http') ? room.image : 'images/' ~ room.image %}
+								<img src="{{ image_url }}" alt="Room Image" class="card-img-top">
 								<div class="card-body">
 									<h5 class="card-title">{{ room.title }}</h5>
 									<p><i>{{ room.city }}</i></p>

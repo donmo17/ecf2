@@ -17,57 +17,78 @@ class ROOMRepository extends ServiceEntityRepository
         parent::__construct($registry, ROOM::class);
     }
 
-    public function findByCity(string $city): QueryBuilder
+    // public function findByCity(string $city): QueryBuilder
+    // {
+    //     $qb = $this->createQueryBuilder('room');
+
+    //     $qb->andWhere('room.city = :city')
+    //     ->setParameter('city', $city);
+
+    //     return $qb;
+    // }
+
+
+    // findByCapacityMin
+    // public function findByCapacityMin(int $capacityMin): array
+    // {
+    //     // Créer une requête avec un QueryBuilder
+    //     $qb = $this->createQueryBuilder('room');
+    //     $qb->andWhere('room.capacity_min <= :capacityMin')
+    //         ->setParameter('capacityMin', $capacityMin);
+
+    //     return $qb->getQuery()->getResult();
+    // }
+
+    // public function findByCapacityMax(string $capacityMax): QueryBuilder
+    // {
+    //     $qb = $this->createQueryBuilder('r');
+    //     $qb->andWhere('r.capacity_max = :capacityMax')->setParameter('capacityMax', $capacityMax);
+    //     return $qb;
+    // }
+
+    /**
+     * Trouver les salles en fonction des capacités minimales et maximales.
+     */
+    public function findRoomsByCapacity(?string $capacityMin, ?string $capacityMax): array
     {
-        $qb = $this->createQueryBuilder('r');
+        $qb = $this->createQueryBuilder('room');
 
-        $qb->andWhere('r.city = :city')
-        ->setParameter('city', $city);
-
-        return $qb;
-    }
-    
-    public function findByDate(array $dates = []): QueryBuilder
-    {
-        $qb = $this->createQueryBuilder('r');
-
-        if (\array_key_exists('start', $dates)) {
-            $qb->andWhere('r.date >= :start')
-            ->setParameter('start', new \DateTimeImmutable($dates['start']));
+        // Vérifier si la capacité minimale est définie
+        if ($capacityMin !== null) {
+            $qb->andWhere('room.capacity_min <= :capacityMin')
+            ->setParameter('capacityMin', $capacityMin);
         }
 
-        if (\array_key_exists('end', $dates)) {
-            $qb->andWhere('r.date <= :end')
-            ->setParameter('end', new \DateTimeImmutable($dates['end']));
+        // Vérifier si la capacité maximale est définie
+        if ($capacityMax !== null) {
+            $qb->andWhere('room.capacity_max >= :capacityMax')
+            ->setParameter('capacityMax', $capacityMax);
         }
 
-        return $qb;
+        return $qb->getQuery()->getResult();
     }
 
-//    /**
-//     * @return ROOM[] Returns an array of ROOM objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return ROOM[] Returns an array of ROOM objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('r')
+    //            ->andWhere('r.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('r.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-public function findByQuery(string $query): array
-{
-    return $this->createQueryBuilder('r')
-        ->where('r.title LIKE :query OR r.city LIKE :query') // Rechercher par titre ou ville
-        ->setParameter('query', '%' . $query . '%') // Ajouter des jokers pour la recherche partielle
-        ->getQuery()
-        ->getResult(); // Utiliser getResult pour obtenir un tableau
-}
-
-
-
+    public function findByQuery(string $query): array
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.title LIKE :query OR r.city LIKE :query') // Rechercher par titre ou ville
+            ->setParameter('query', '%' . $query . '%') // Ajouter des jokers pour la recherche partielle
+            ->getQuery()
+            ->getResult(); // Utiliser getResult pour obtenir un tableau
+    }
 }

@@ -108,9 +108,14 @@ header .nav__container a li {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center;
   padding: 20px;
   background-color: rgb(240, 242, 243);
+}
+.home__form--content form {
+  width: auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 .home__form--content label {
   color: #7BBCB0;
@@ -309,6 +314,8 @@ header .nav__container a li {
 .room__filter--search {
   display: flex;
   flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 30px;
 }
 .room__filter--search form button {

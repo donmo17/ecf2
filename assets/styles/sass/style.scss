@@ -116,9 +116,14 @@ header{
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            align-items: center;
             padding: 20px;
             background-color:rgb(240, 242, 243);
+            form{
+                width: auto;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
             label{
                 color: $fc_span;
                 font-weight: 600;
@@ -319,6 +324,8 @@ header{
         &--search{
             display: flex;
             flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 30px;
             form button{
                 margin-left: 15px;
