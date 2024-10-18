@@ -19,7 +19,7 @@ function calculateTotal() {
         document.getElementById('totalPrice').innerText = "Veuillez choisir des dates valides.";
     }
 }
-window.addEventListener('load', function() {
+window.addEventListener('change', function() {
     // Récupérer les champs de date
     const checkinField = document.getElementById('check_in_date');
     const checkoutField = document.getElementById('check_out_date');
