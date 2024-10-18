@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Register'|trans }}{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        <div class="mb-3">
+            {{ 'You are logged in as'|trans }} {{ app.user.email }}, 
+            <a href="{{ path('app_logout') }}">{{ 'Logout'|trans }}</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">{{ 'Please register'|trans }}</h1>
+
+    {{ form_start(registrationForm) }}
+        <div class="form-group">
+            {{ form_label(registrationForm.email) }}
+            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(registrationForm.plainPassword, 'Password'|trans) }}
+            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+            {{ form_label(registrationForm.agreeTerms) }}
+        </div>
+
+        <button type="submit" class="btn btn-lg btn-primary">{{ 'Register'|trans }}</button>
+    {{ form_end(registrationForm) }}
+
+    <p>{{ 'This is a paragraph that will be translated'|trans }}</p>
+{% endblock %}
