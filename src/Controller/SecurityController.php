@@ -10,19 +10,41 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class SecurityController extends AbstractController
 {
     #[Route(path: '/register', name: 'app_register', methods: ['GET', 'POST'])]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHashed, EntityManagerInterface $entityManager, UserRepository $ur): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHashed, EntityManagerInterface $entityManager, UserRepository $ur,SluggerInterface $slugger): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('image')->getData();
+
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+    
+                try {
+                    // Déplacement du fichier dans un dossier sécurisé
+                    $imageFile->move(
+                        $this->getParameter('images_directory'), // Assure-toi que ce paramètre est configuré
+                        $newFilename
+                    );
+                    $user->setImage($newFilename); // Assure-toi d'avoir un setter pour l'image dans l'entité User
+                } catch (FileException $e) {
+                    // Gérer l'exception si le fichier n'a pas pu être déplacé
+                }
+            }
+    
+
             /** @var string $plainPassword */
             $password = $form->get('password')->getData();
             $confirmPassword = $form->get('confirmPassword')->getData();

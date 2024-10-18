@@ -124,62 +124,8 @@
 				
 			</div>
 
-			<div class="col-12 col-lg-9 room__filter--results">
+				<twig:SearchRoom/>
 
-                <div class="room__filter--search">
-                    <form action="" method="">
-                        <div class="d-flex">
-                            <input type="text" name="" id="" placeholder="Votre recherche">
-                            <button type="submit" class="btn btn-warning"><i class="bi bi-search"></i></button>
-                        </div>
-                    </form>
-
-                    <p>Résultats : {{ rooms|length }}</p>
-                </div>
-
-				{% for room in rooms %}
-					<a href="{{ path('app_room_show', { 'id': room.id }) }}">
-						<div class="room__filter--card">
-							<img src="{{ asset( room.image) }}" alt="Salle n°{{ room.id }}">
-							<div class="room__filter--content">
-								<div class="room__filter--text">
-									<div class="d-flex justify-content-between">
-										<h5>{{ room.title }}</h5>
-										<p class="m-0 p-0"><i>{{ room.city }}</i></p>
-									</div>
-									<div class="d-none d-xl-inline-flex d-flex justify-content-between ">
-										<p>
-											<i class="bi bi-building"></i>
-											Ergonomie :
-											<br>{{ room.ergonomic[0] }}
-											...</p>
-										<p>
-											<i class="bi bi-lightbulb"></i>
-											Equipement :
-											<br>{{ room.equipment[0] }}
-											...</p>
-										<p>
-											<i>{{ room.capacityMin }}
-												<i class="bi bi-people"></i>
-												-
-												{{ room.capacityMax }}
-												<i class="bi bi-people"></i>
-											</i>
-										</p>
-									</div>
-								</div>
-								<p class="w-20">
-									<span>{{ room.price }}
-										€</span><br>/jour</p>
-							</div>
-						</div>
-					</a>
-				{% else %}
-				<p>Aucun résultat trouvé.</p>
-				{% endfor %}
-                {{ pagerfanta(rooms) }}
-			</div>
-		</div>
 	</main>
 
 {% endblock %}
