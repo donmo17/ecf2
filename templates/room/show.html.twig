@@ -38,8 +38,7 @@
             {% endif %}
             </div>
             <figure class="col-12 col-lg-5">
-               {% set image_url = (room.image|slice(0, 4) == 'http') ? room.image : 'images/' ~ room.image %} <img src="{{ image_url }}" alt="Room Image">
-               <img src="{{ asset(room.image) }}" alt="{{ room.title }}">
+               {% set image_url = (room.image|slice(0, 4) == 'http') ? room.image : 'images/' ~ room.image %} <img src="{{asset( image_url) }}" alt="Room Image">
             </figure>
          </div>
       </article>
