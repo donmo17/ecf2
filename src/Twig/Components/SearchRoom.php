@@ -24,6 +24,8 @@ class SearchRoom
     #[LiveProp(writable: true, url: true)]
     public ?string $capacityMax = null;
 
+   
+
     public function __construct(private ROOMRepository $Rooms) {}
 
     public function getRooms(): array
@@ -34,12 +36,12 @@ class SearchRoom
         if ($this->city) {
             return $this->Rooms->findByCity($this->city);
         }
-        if ($this->capacityMin || $this->capacityMax) {
-            return $this->Rooms->findRoomsByCapacity($this->capacityMin, $this->capacityMax);
+        if ($this->capacityMin ) {
+            return $this->Rooms->findByCapacityMin($this->capacityMin);
         }
-        // if ($this->capacityMax) {
-        //     return $this->Rooms->findByCapacityMax($this->capacityMax);
-        // }
+         if ($this->capacityMax) {
+             return $this->Rooms->findByCapacityMax($this->capacityMax);
+         }
 
         return $this->Rooms->findAll();
     }
