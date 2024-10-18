@@ -46,10 +46,10 @@
          <div class="room__content--form">
             <legend><h5 class="text-center">Réservez votre salle dés maintenant</h5></legend>
 
-            {% for message in app.flashes('succes') %}
+            {% for message in app.flashes('success') %}
                <div class="alert alert-success">{{ message }}</div>
             {% endfor %}
-            
+
             <input type="hidden" name="token" value="{{ csrf_token('new_booking') }}">
             {{ form_start(BookingForm) }}
                <div class="room__content--group">
