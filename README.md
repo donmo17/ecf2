@@ -1,6 +1,6 @@
 # Système de Gestion de Salles - Projet Symfony 7
 
-Ce projet est un système de gestion de salles développé avec Symfony 7. Il inclut des fonctionnalités multilingues (français, anglais, espagnol) et un système d'authentification avec notifications.
+Ce projet est un système de gestion de salles développé avec Symfony 7. Il inclut des fonctionnalités multilingues (français, anglais, espagnol), un système d'authentification avec notifications, et une gestion du consentement des cookies.
 
 ## Prérequis
 
@@ -39,7 +39,12 @@ Ce projet est un système de gestion de salles développé avec Symfony 7. Il in
 - Système multilingue (français, anglais, espagnol)
 - Authentification des utilisateurs (inscription, connexion)
 - Notifications pour les actions utilisateur
+- Gestion du consentement des cookies
 - Gestion des salles (à venir)
+
+## Gestion des Cookies
+
+Le site inclut une bannière de consentement pour les cookies qui s'affiche lors de la première visite. Les utilisateurs peuvent choisir d'accepter tous les cookies ou seulement les cookies essentiels. Cette préférence est ensuite stockée dans le localStorage du navigateur.
 
 ## Contribuer
 
@@ -54,7 +59,5 @@ Ce projet est un système de gestion de salles développé avec Symfony 7. Il in
 Distribué sous la licence MIT. Voir `LICENSE` pour plus d'informations.
 
 ## Contact
-
-Votre Nom - [@votre_twitter](https://twitter.com/votre_twitter) - email@example.com
 
 Lien du projet : [https://github.com/donmo17/ecf2](https://github.com/donmo17/ecf2)
