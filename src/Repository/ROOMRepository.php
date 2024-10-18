@@ -59,13 +59,15 @@ class ROOMRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?ROOM
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+public function findByQuery(string $query): array
+{
+    return $this->createQueryBuilder('r')
+        ->where('r.title LIKE :query OR r.city LIKE :query') // Rechercher par titre ou ville
+        ->setParameter('query', '%' . $query . '%') // Ajouter des jokers pour la recherche partielle
+        ->getQuery()
+        ->getResult(); // Utiliser getResult pour obtenir un tableau
+}
+
+
+
 }
