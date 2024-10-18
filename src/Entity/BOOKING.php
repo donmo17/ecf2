@@ -8,7 +8,7 @@ use App\Repository\BOOKINGRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
-
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: BOOKINGRepository::class)]
 class BOOKING
 {
@@ -59,7 +59,12 @@ class BOOKING
         $this->is_validate = false;
         $this->status = BookingStatus::Pending; // Correction ici
     }
-
+    
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        $this->created_at = new \DateTimeImmutable();
+    }
     
     public function getId(): ?int
     {
