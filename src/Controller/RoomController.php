@@ -97,6 +97,8 @@ class RoomController extends AbstractController
                 'success',
                 'Votre demande de réservation a bien été enregistré.'
             );
+
+            // return $this->redirectToRoute('app_payment');
         }
       
         return $this->render('room/show.html.twig', [
