@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
@@ -65,11 +66,11 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'Nancy',
                 ],
             ])
-            ->add('image', UrlType::class, [
+            ->add('image', FileType::class, [
                 'required' => false,
                 'label' => 'Image de profil',
                 'attr' => [
-                    'placeholder' => 'https://...',
+                    'placeholder' => 'Téléchargez votre image',
                 ],
             ])
             ->add('submit', SubmitType::class, [
