@@ -47,7 +47,9 @@
             <legend><h5 class="text-center">Réservez votre salle dés maintenant</h5></legend>
 
             {% for message in app.flashes('success') %}
-               <div class="alert alert-success">{{ message }}</div>
+               <div class="alert alert-success">
+                  {{ message }}
+               </div>
             {% endfor %}
 
             <input type="hidden" name="token" value="{{ csrf_token('new_booking') }}">
