@@ -41,9 +41,13 @@ class ROOMCrudController extends AbstractCrudController
             //ArrayField::new(propertyName: 'equipment'),
 
             ImageField::new('image')
-            ->setBasePath('public/images') 
-            ->setUploadDir('public/images') 
-            ->setUploadedFileNamePattern('[randomhash].[extension]') 
+            // Chemin relatif pour accéder aux images dans l'administration
+            ->setBasePath('images') // Pas besoin de 'public' car le chemin généré commence à partir de la racine
+            // Chemin dans lequel les images sont uploadées
+            ->setUploadDir('public/images')
+            // Générer un nom de fichier unique pour chaque upload
+            ->setUploadedFileNamePattern('[randomhash].[extension]')
+            // Rendre le champ optionnel (pas requis)
             ->setRequired(false),
 
             //DateField::new(propertyName: 'created_at'),

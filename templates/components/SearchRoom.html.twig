@@ -11,7 +11,8 @@
         {% for item in rooms %}
             <a href="{{ path('app_room_show', { 'id': item.id }) }}">
                 <div class="room__filter--card">
-                    <img src="{{ asset(item.image) }}" alt="Salle n°{{ item.id }}">
+                    {% set image_url = (item.image|slice(0, 4) == 'http') ? item.image : 'images/' ~ item.image %}
+                    <img src="{{ asset(image_url) }}" alt="{{ item.title }}">
                     <div class="room__filter--content">
                         <div class="room__filter--text">
                             <div class="d-flex justify-content-between">
@@ -19,16 +20,20 @@
                                 <p class="m-0 p-0"><i>{{ item.city }}</i></p>
                             </div>
                             <div class="d-none d-xl-inline-flex d-flex justify-content-between">
+                                {% if item.ergonomic is not empty %}
                                 <p>
                                     <i class="bi bi-building"></i>
                                     Ergonomie :
                                     <br>{{ item.ergonomic[0] }} ...
                                 </p>
+                                {% endif %}
+                                {% if item.equipment is not empty %}
                                 <p>
                                     <i class="bi bi-lightbulb"></i>
                                     Equipement :
                                     <br>{{ item.equipment[0] }} ...
                                 </p>
+                                {% endif %}
                                 <p>
                                     <i>{{ item.capacityMin }}
                                         <i class="bi bi-people"></i> -

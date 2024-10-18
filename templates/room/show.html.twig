@@ -20,21 +20,26 @@
          <p>{{ room.description }}</p>
          <div class="row justify-content-between room__content--detail">
             <div class="col-12 col-lg-6">
+            {% if room.ergonomic is not empty %}
                <p><i class="bi bi-building"></i> Ergonomie :</p>
                <ul>
                   {% for ergo in room.ergonomic %}
                   <li>{{ ergo }}</li>
                   {% endfor %}
                </ul>
+            {% endif %}
+            {% if room.equipment is not empty %}
                <p><i class="bi bi-lightbulb"></i> Equipement :</p>
                <ul>
                   {% for eqt in room.equipment %}
                      <li>{{ eqt }}</li>
                   {% endfor %}
                </ul>
+            {% endif %}
             </div>
             <figure class="col-12 col-lg-5">
-               <img src="{{ room.image }}" alt="{{ room.title }}">
+               {% set image_url = (room.image|slice(0, 4) == 'http') ? room.image : 'images/' ~ room.image %} <img src="{{ image_url }}" alt="Room Image">
+               <img src="{{ asset(room.image) }}" alt="{{ room.title }}">
             </figure>
          </div>
       </article>

@@ -49,8 +49,9 @@
 					<div class="col-6 col-lg-4 p-2">
 						<a href="{{ path('app_room_show', { 'id': room.id }) }}">
 							<div class="card">
-								<img src="{{ asset( room.image) }}" class="card-img-top" alt="Salle n°{{ room.id }}">
-				
+								
+								{% set image_url = (room.image|slice(0, 4) == 'http') ? room.image : 'images/' ~ room.image %} <img src="{{ image_url }}" alt="Room Image">
+               					<img src="{{ asset(room.image) }}" alt="{{ room.title }}"  class="card-img-top">
 								<div class="card-body">
 									<h5 class="card-title">{{ room.title }}</h5>
 									<p><i>{{ room.city }}</i></p>
