@@ -59,6 +59,16 @@ class ROOMRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+public function findByQuery(string $query): array
+{
+    return $this->createQueryBuilder('r')
+        ->where('r.title LIKE :query OR r.city LIKE :query')
+        ->setParameter('query', '%' . $query . '%')
+        ->getQuery()
+        ->getResult(); // Renvoie tous les résultats correspondants
+}
+
+
 public function findByCapacityMin(int $capacityMin): array
 {
     $qb = $this->createQueryBuilder('r');
@@ -82,7 +92,6 @@ public function findByCapacityMax(int $capacityMax): array
     // Exécuter la requête et retourner un tableau de résultats
     return $qb->getQuery()->getResult();
 }
-
 
 
 
