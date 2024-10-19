@@ -39,6 +39,7 @@ class RoomController extends AbstractController
         //         10
         //     );
         // }
+         //$rooms = $repo->findAll();
 
         return $this->render('room/index.html.twig', [
             // 'rooms' => $rooms,

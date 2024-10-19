@@ -1,4 +1,8 @@
 <div class="row room__filter" {{ attributes }} >
+{% set rooms = this.Rooms %}
+
+
+	
 	<div class="col-12 col-lg-3 shadow p-3 mb-5 bg-body-tertiary rounded">
 		<h5 class="text-center">Filtrer ma recherche</h5>
 
@@ -48,6 +52,8 @@
 					</div>
 				</div>
 			</div>
+
+		
 			<div class="accordion-item">
 				<h2 class="accordion-header">
 					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -79,43 +85,52 @@
 				</h2>
 				<div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFilter">
 					<div class="accordion-body">
-						<form action="" method="get" class="room__filter--form">
 							<div class="room__filter--group">
-								<h6>Ergonomie</h6>
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-									<label class="form-check-label" for="flexCheckDefault">
-										Default checkbox
-									</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-									<label class="form-check-label" for="flexCheckChecked">
-										Checked checkbox
-									</label>
-								</div>
-							</div>
-							<div class="room__filter--group">
-								<h6>Equipement</h6>
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-									<label class="form-check-label" for="flexCheckDefault">
-										Default checkbox
-									</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-									<label class="form-check-label" for="flexCheckChecked">
-										Checked checkbox
-									</label>
-								</div>
-							</div>
-							<div class="button">
-								<button type="submit" class="btn btn-warning">
-									<i class="bi bi-search"></i>
-								</button>
-							</div>
-						</form>
+    <h6>Ergonomie</h6>
+    {% set alreadyDisplayed = [] %}
+    {% for room in rooms %}
+        {% for item in room.ergonomic %}
+            {% if item not in alreadyDisplayed %}
+                <div class="form-check">
+                    <input class="form-check-input" 
+                           data-model="ergonomics" 
+                           type="checkbox" 
+                           value="{{ item }}" 
+                           id="{{ item | lower | replace({' ': '_'}) }}"
+                           {% if item in this.ergonomics %}checked{% endif %}>
+                    <label class="form-check-label" for="{{ item | lower | replace({' ': '_'}) }}">
+                        {{ item }}
+                    </label>
+                </div>
+                {% set alreadyDisplayed = alreadyDisplayed|merge([item]) %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</div>
+
+<div class="room__filter--group">
+    <h6>Equipement</h6>
+    {% set alreadyDisplayedEquipment = [] %}
+    {% for room in rooms %}
+        {% for item in room.equipment %}
+            {% if item not in alreadyDisplayedEquipment %}
+                <div class="form-check">
+                    <input class="form-check-input" 
+                           data-model="equipment" 
+                           type="checkbox" 
+                           value="{{ item }}" 
+                           id="{{ item | lower | replace({' ': '_'}) }}"
+                           {% if item in this.equipment %}checked{% endif %}>
+                    <label class="form-check-label" for="{{ item | lower | replace({' ': '_'}) }}">
+                        {{ item }}
+                    </label>
+                </div>
+                {% set alreadyDisplayedEquipment = alreadyDisplayedEquipment|merge([item]) %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</div>
+							
 					</div>
 				</div>
 			</div>
@@ -125,6 +140,8 @@
 	</div>
 
 	<div class="col-12 col-lg-9 room__filter--results">
+
+
 		<div class="room__filter--search">
 			<input type="text" data-model="query" name="" id="" placeholder="Votre recherche ">
 			{# <p>Résultat:
@@ -133,7 +150,7 @@
 			{# <p>Résultats : {{ rooms|length }}</p> #}
 		</div>
 
-		{% set rooms = this.Rooms %}
+	
 		{% for item in rooms %}
 			<a href="{{ path('app_room_show', { 'id': item.id }) }}">
 				<div class="room__filter--card">
