@@ -6,7 +6,39 @@
 <main class="profile">
     {{ include('./components/partials/profileMenu.html.twig') }}
     <div class="profile__content">
-    
+        <h1 class="text-center w-100">Bienvenue <span>{{ app.user.firstName | default('Utilisateur') }} {{ app.user.lastName|upper | default('Inconnu') }}</span></h1>
+        <div class="row mt-5 w-100 justify-content-between">
+            <div class="col-12 col-lg-3 m-2 p-4 border rounded">
+                <h6>Dérnières notifications</h6>
+                <ul class="unlist">
+                    {% for notification in recentNotifications %}
+                        <li class="alert alert-{{ notification.label }}">
+                            {{ notification.title }} 
+                        </li>
+                    {% else %}
+                        <li>Aucune notification récente.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-12 col-lg-5 m-2 p-4 border rounded">
+                <h6>Réservations</h6>
+                <ul>
+                    {% for booking in recentBookings %}
+                        <li>
+                            <img src="{{ asset(booking.roomId.image) }}" alt="Image de la salle">
+                            <small>Réservation du {{ booking.checkInAt|date('d/m/Y') }} au {{ booking.checkOutAt|date('d/m/Y') }} pour la chambre {{ booking.roomId.title }}</small>
+                        </li>
+                    {% else %}
+                        <li>Aucune réservation récente.</li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+            <div class="col-12 col-lg-3 m-2 p-4 border rounded">
+                <h6>Paiements en attente </h6>
+
+            </div>
+        </div>
     </div>
 </main>
 {% endblock %}

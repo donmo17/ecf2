@@ -3,8 +3,7 @@
 		{% set image_url = app.user.image ? app.user.image : 'images/profil.webp' %}
 		<img src="{{ asset(image_url) }}" alt="Image de profil">
 		<p>
-			<span>{{ app.user.firstName }}
-				{{ app.user.lastName|upper }}</span>
+			<span>{{ app.user.firstName | default('Utilisateur') }} {{ app.user.lastName|upper | default('Inconnu') }}</span>
 		</p>
 	</div>
     <ul class="profile__menu--list">

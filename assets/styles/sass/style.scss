@@ -395,6 +395,7 @@ header{
             display: flex;
             align-items: center;
             justify-content: space-around;
+            gap: 15px;
             img{
                 width: 100px;
                 height: 100px;
@@ -423,10 +424,39 @@ header{
             }
         }
     }
+    &__content{
+        width: 100%;
+        padding: 50px;
+        ul{
+            padding: 0;
+            
+            width: 100%;
+            li{
+                list-style: none;
+                padding: 5px 10px;
+                display: flex;
+                gap: 8px;
+                img{
+                    width: 60px;
+                    height: 60px;
+                    object-fit: cover;
+                }
+            }
+        }
+        &--notification{
+            
+            img{
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+            }
+        }
+    }
     @media (min-width: 768px) {
         &__menu{
             width: 25%;
             flex-direction: column;
+            justify-content: start;
             gap: 50px;
             &--head{
                 flex-direction: column;
@@ -436,6 +466,9 @@ header{
             &--list{
                 font-size: large;
             }
+        }
+        &__content{
+            width: 75%;
         }
     }
 }

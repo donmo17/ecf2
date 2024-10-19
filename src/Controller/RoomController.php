@@ -87,8 +87,8 @@ class RoomController extends AbstractController
             // Création d'une notification
             $notification = new NOTIFICATION();
             $notification->setTitle('Nouvelle réservation')
-                ->setContent('Votre réservation pour la chambre ' . $room->getTitle() . ' a été effectuée avec succès.')
-                ->setLabel('booking')
+                ->setContent('Votre réservation pour la chambre "' . $room->getTitle() . '" situé à "' . $room->getCity() . '" a été effectuée avec succès.')
+                ->setLabel('info')
                 ->setBookingId($booking); // Lier la notification à la réservation
 
             // Persister la notification et le booking
