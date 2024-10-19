@@ -50,8 +50,8 @@
                <div class="alert alert-success">{{ message }}</div>
             {% endfor %}
 
-            <input type="hidden" name="token" value="{{ csrf_token('new_booking') }}">
             {{ form_start(BookingForm) }}
+               <input type="hidden" name="token" value="{{ csrf_token('new_booking') }}">
                <div class="room__content--group">
                   {{ form_row(BookingForm.check_in_at) }}
                </div>

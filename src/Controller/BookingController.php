@@ -11,15 +11,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class BookingController extends AbstractController
 {
     // https://symfony.com/doc/current/security/csrf.html
-    #[Route('/booking', name: 'app_booking_new', methods:['POST'])]
-    public function index(Request $request): Response
+    #[Route('/booking', name: 'app_booking_index', methods:['GET'])]
+    public function index(): Response
     {
-        $submittedToken = $request->getPayload()->get('token');
+       
 
-        // 'new_booking' is the same value used in the template to generate the token
-        if ($this->isCsrfTokenValid('new_booking', $submittedToken)) {
-            // ... do something, like deleting an object
-        }
+        
         return $this->render('booking/index.html.twig', [
             'controller_name' => 'BookingController',
         ]);

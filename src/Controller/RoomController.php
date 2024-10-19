@@ -56,7 +56,9 @@ class RoomController extends AbstractController
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $submittedToken = $request->getPayload()->get('token');
+
+        if ($form->isSubmitted() && $form->isValid() && $this->isCsrfTokenValid('new_booking', $submittedToken)) {
 
             // Vérifier si utilisateur est connecté
             $user = $security->getUser();
@@ -95,13 +97,16 @@ class RoomController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Votre demande de réservation a bien été enregistré.'
+                'Votre demande de pré-réservation a bien été enregistré. Vous pouvez suivre son avancé depuis votre profil.'
             );
+
+            // Redirigez l'utilisateur vers la même page pour afficher le message flash
+            return $this->redirectToRoute('app_room_show', ['id' => $id]);
         }
       
         return $this->render('room/show.html.twig', [
             'BookingForm' => $form,
-             'room'=>$room
+            'room'=>$room
         ]);
     }
 }
