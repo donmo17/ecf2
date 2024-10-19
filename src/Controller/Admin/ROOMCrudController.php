@@ -36,9 +36,9 @@ class ROOMCrudController extends AbstractCrudController
             NumberField::new(propertyName: 'capacity_min'),
 
             NumberField::new(propertyName: 'capacity_max'),
-            //ArrayField::new(propertyName: 'ergonomic'),
+            ArrayField::new(propertyName: 'ergonomic'),
 
-            //ArrayField::new(propertyName: 'equipment'),
+            ArrayField::new(propertyName: 'equipment'),
 
             ImageField::new('image')
             // Chemin relatif pour accéder aux images dans l'administration

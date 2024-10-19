@@ -26,7 +26,9 @@ class SearchRoom
 
    
 
-    public function __construct(private ROOMRepository $Rooms) {}
+    public function __construct(private ROOMRepository $Rooms) {
+        
+    }
 
     public function getRooms(): array
     {

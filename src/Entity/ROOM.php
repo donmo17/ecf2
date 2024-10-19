@@ -64,6 +64,9 @@ class ROOM
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
+        $this->ergonomic = ['Luminosité naturelle', 'Accessibilité PMR', 'Climatisation'];
+        $this->equipment = ['Projecteur', 'Connexion Wi-Fi', 'Distributeur de boissons','Système de sécurité'];
+
     }
 
     #[ORM\PrePersist]
