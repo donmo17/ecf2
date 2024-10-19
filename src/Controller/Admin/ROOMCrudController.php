@@ -3,8 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\ROOM;
+use App\Form\Type\RoomImagesType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -39,8 +41,10 @@ class ROOMCrudController extends AbstractCrudController
             ArrayField::new(propertyName: 'ergonomic'),
 
             ArrayField::new(propertyName: 'equipment'),
+            
 
             ImageField::new('image')
+            ->setLabel('Image principale')
             // Chemin relatif pour accéder aux images dans l'administration
             ->setBasePath('images') // Pas besoin de 'public' car le chemin généré commence à partir de la racine
             // Chemin dans lequel les images sont uploadées
@@ -52,8 +56,14 @@ class ROOMCrudController extends AbstractCrudController
 
             //DateField::new(propertyName: 'created_at'),
 
+            CollectionField::new('roomImgs')
+            ->setEntryType(RoomImagesType::class)
+            ->setLabel('D autres images')
 
         ];
+
+        
+
     }
    
 }

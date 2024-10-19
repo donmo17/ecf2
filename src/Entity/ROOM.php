@@ -61,11 +61,18 @@ class ROOM
     #[ORM\OneToMany(targetEntity: BOOKING::class, mappedBy: 'room_id')]
     private Collection $bookings;
 
+    /**
+     * @var Collection<int, RoomImg>
+     */
+    #[ORM\OneToMany(targetEntity: RoomImg::class, mappedBy: 'Room')]
+    private Collection $roomImgs;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
         $this->ergonomic = ['Luminosité naturelle', 'Accessibilité PMR', 'Climatisation'];
         $this->equipment = ['Projecteur', 'Connexion Wi-Fi', 'Distributeur de boissons','Système de sécurité'];
+        $this->roomImgs = new ArrayCollection();
 
     }
 
@@ -251,6 +258,36 @@ class ROOM
             // set the owning side to null (unless already changed)
             if ($booking->getRoomId() === $this) {
                 $booking->setRoomId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RoomImg>
+     */
+    public function getRoomImgs(): Collection
+    {
+        return $this->roomImgs;
+    }
+
+    public function addRoomImg(RoomImg $roomImg): static
+    {
+        if (!$this->roomImgs->contains($roomImg)) {
+            $this->roomImgs->add($roomImg);
+            $roomImg->setRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRoomImg(RoomImg $roomImg): static
+    {
+        if ($this->roomImgs->removeElement($roomImg)) {
+            // set the owning side to null (unless already changed)
+            if ($roomImg->getRoom() === $this) {
+                $roomImg->setRoom(null);
             }
         }
 
