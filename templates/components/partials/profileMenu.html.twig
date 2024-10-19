@@ -1,0 +1,33 @@
+<div class="profile__menu shadow p-3 mb-5 bg-body-tertiary rounded">
+	<div class="profile__menu--head">
+		{% set image_url = app.user.image ? app.user.image : 'images/profil.webp' %}
+		<img src="{{ asset(image_url) }}" alt="Image de profil">
+		<p>
+			<span>{{ app.user.firstName }}
+				{{ app.user.lastName|upper }}</span>
+		</p>
+	</div>
+    <ul class="profile__menu--list">
+        <a href="{{ path('app_profile_index') }}">
+            <li class="{% if app.request.attributes.get('_route') == 'app_profile_index' %}active{% endif %}">
+                Mon compte
+            </li>
+        </a>
+        <a href="{{ path('app_profile_notification') }}">
+            <li class="{% if app.request.attributes.get('_route') == 'app_profile_notification' %}active{% endif %}">
+                Notifications
+            </li>
+        </a>
+        <a href="{{ path('app_profile_booking') }}">
+            <li class="{% if app.request.attributes.get('_route') == 'app_profile_booking' %}active{% endif %}">
+                Réservations
+            </li>
+        </a>
+        <a href="{{ path('app_profile_edit') }}">
+            <li class="{% if app.request.attributes.get('_route') == 'app_profile_edit' %}active{% endif %}">
+                Paramètres
+            </li>
+        </a>
+    </ul>
+
+</div>

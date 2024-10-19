@@ -381,3 +381,61 @@ header{
         
     }
 }
+.profile{
+    margin: 90px 5%;
+
+    display: flex;
+    flex-wrap: wrap;
+    &__menu{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        &--head{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            img{
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+        }
+        &--list{
+            a{
+                color: inherit;
+                text-decoration: none;
+                &:hover{
+                    color: $fc_span;
+                }
+                .active{
+                    font-weight: bold;
+                    color: $fc_span;
+                }
+            }
+            li{
+                list-style: none;
+                padding: 15px;
+                &:hover{
+                    border-bottom: $fc_span 1px solid;
+                }
+            }
+        }
+    }
+    @media (min-width: 768px) {
+        &__menu{
+            width: 25%;
+            flex-direction: column;
+            gap: 50px;
+            &--head{
+                flex-direction: column;
+                gap: 20px;
+                margin: 15px;
+            }
+            &--list{
+                font-size: large;
+            }
+        }
+    }
+}

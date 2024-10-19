@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profile', name: 'app_profile')]
+    #[Route('/profile', name: 'app_profile_index')]
     public function index(): Response
     {
 
@@ -19,23 +19,26 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/profile/bookings', name: 'app_profbooking')]
-    public function profbooking(): Response
+    #[Route('/profile/booking', name: 'app_profile_booking')]
+    public function booking(): Response
     {
         return $this->render('profile/booking.html.twig', [
             'controller_name' => 'ProfileController',
         ]);
     }
-    
-    #[Route('/profile/edit', name: 'app_profiledit')]
-    public function profiledit(  ): Response
+
+    #[Route('/profile/notification', name: 'app_profile_notification')]
+    public function notification(): Response
+    {
+        return $this->render('profile/notification.html.twig', [
+            'controller_name' => 'ProfileController',
+        ]);
+    }
+
+    #[Route('/profile/edit', name: 'app_profile_edit')]
+    public function edit(  ): Response
     {
    
-
-
-     
-        
-
         return $this->render('profile/edit.html.twig', [
             'controller_name' => 'ProfileController',
         ]);

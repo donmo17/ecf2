@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %}EventRoom : Mon compte{% endblock %}
 
 {% block body %}
-
-<br><br><br><br>
-<a href="">edit</a>
-
-
+<main class="profile">
+    {{ include('./components/partials/profileMenu.html.twig') }}
+    <div class="profile__content">
+    
+    </div>
+</main>
 {% endblock %}
