@@ -47,8 +47,7 @@ class ROOM
     #[ORM\Column(type: Types::ARRAY)]
     private array $equipment = [];
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
+ 
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
@@ -64,7 +63,7 @@ class ROOM
     /**
      * @var Collection<int, RoomImg>
      */
-    #[ORM\OneToMany(targetEntity: RoomImg::class, mappedBy: 'Room')]
+    #[ORM\OneToMany(targetEntity: RoomImg::class, mappedBy: 'Room', cascade: ['persist'])]
     private Collection $roomImgs;
 
     public function __construct()
@@ -209,17 +208,7 @@ class ROOM
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): static
-    {
-        $this->image = $image;
-
-        return $this;
-    }
+   
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -292,5 +281,14 @@ class ROOM
         }
 
         return $this;
+    }
+
+    public function getFirstImage(): ?RoomImg
+    {
+        return $this->roomImgs->first() ?: null; // Récupère la première image ou null si la collection est vide
+    }
+    public function __toString(): string
+    {
+        return $this->title; // Par exemple, retourner le titre de la pièce
     }
 }

@@ -154,8 +154,12 @@
 		{% for item in rooms %}
 			<a href="{{ path('app_room_show', { 'id': item.id }) }}">
 				<div class="room__filter--card">
-					{% set image_url = (item.image|slice(0, 4) == 'http') ? item.image : 'images/' ~ item.image %}
-					<img src="{{ asset(image_url) }}" alt="{{ item.title }}">
+							
+							 {% if item.getFirstImage() is not null %}
+                        <img src="{{ vich_uploader_asset(item.getFirstImage(), 'imageFile') }}" alt="Room Image" class="w-full h-36 object-cover">
+                        {% else %}
+                        <img src="{{ asset('images/website/hero.jpg') }}" alt="Produit Image Par Défaut" class="w-full h-36 object-cover">
+                        {% endif %}
 					<div class="room__filter--content">
 						<div class="room__filter--text">
 							<div class="d-flex justify-content-between">

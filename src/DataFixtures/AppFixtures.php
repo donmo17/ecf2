@@ -25,7 +25,7 @@ class AppFixtures extends Fixture
             ->setAddress('12 avenue du Général Leclerlc')
             ->setZipCode('95130')
             ->setCity('Franconville')
-            ->setImage('https://images.pexels.com/photos/4298629/pexels-photo-4298629.jpeg?auto=compress&cs=tinysrgb&w=600')
+           // ->setImage('https://images.pexels.com/photos/4298629/pexels-photo-4298629.jpeg?auto=compress&cs=tinysrgb&w=600')
         ;
         $manager->persist($user);
 
@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
         ->setAddress('14 rue aux Loups')
         ->setZipCode('95130')
         ->setCity('Franconville')
-        ->setImage('https://images.pexels.com/photos/2173382/pexels-photo-2173382.jpeg?auto=compress&cs=tinysrgb&w=600')
+       // ->setImage('https://images.pexels.com/photos/2173382/pexels-photo-2173382.jpeg?auto=compress&cs=tinysrgb&w=600')
         ;
         $manager->persist($admin);
 
@@ -97,7 +97,6 @@ class AppFixtures extends Fixture
                     $faker->randomElement($equipment),
                     $faker->randomElement($equipment),
                 ]), 0, 2)) // Choisir jusqu'à 2 équipements uniques
-                                ->setImage($faker->randomElement($images))
             ;
             $manager->persist($room);
         };

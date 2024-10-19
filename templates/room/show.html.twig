@@ -38,7 +38,16 @@
             {% endif %}
             </div>
             <figure class="col-12 col-lg-5">
-               {% set image_url = (room.image|slice(0, 4) == 'http') ? room.image : 'images/' ~ room.image %} <img src="{{asset( image_url) }}" alt="Room Image">
+
+                       <figure class="col-12 col-lg-5">
+    {% for image in room.getRoomImgs() %}
+        {% if image is not null %}
+            <img src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="Image de produit" class="w-full h-400">
+        {% else %}
+            <img src="{{ asset('images/cool.png') }}" alt="Image par défaut" class="w-full h-auto">
+        {% endif %}
+    {% endfor %}
+</figure>
             </figure>
          </div>
       </article>

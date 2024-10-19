@@ -17,10 +17,11 @@ class RoomImg
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-    #[Vich\UploadableField(mapping: 'ROOM', fileNameProperty: 'Room')]
-
+    #[Vich\UploadableField(mapping: 'ROOM', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
     #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageName = null;
+
     
     #[ORM\ManyToOne(inversedBy: 'roomImgs')]
     private ?ROOM $Room = null;
@@ -54,4 +55,17 @@ class RoomImg
         return $this->imageFile;
     }
 
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): self
+    {
+        $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    
 }

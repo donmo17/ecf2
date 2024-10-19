@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Form\Type;
+namespace App\Form;
 
-use App\Entity\ROOM;
+
 use App\Entity\RoomImg;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

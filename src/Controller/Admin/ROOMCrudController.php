@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\ROOM;
-use App\Form\Type\RoomImagesType;
+use App\Form\RoomImagesType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
@@ -24,43 +24,22 @@ class ROOMCrudController extends AbstractCrudController
  
     public function configureFields(string $pageName): iterable
     {
-        return [
-          //  IdField::new('id')->setFormTypeOption('disabled', true),
-            TextField::new(propertyName: 'title'),
-            TextEditorField::new('description'),
-            NumberField::new('price'),
-            TextField::new(propertyName: 'address'),
-
-            TextField::new(propertyName: 'city'),
-
-            TextField::new(propertyName: 'zipcode'),
-
-            NumberField::new(propertyName: 'capacity_min'),
-
-            NumberField::new(propertyName: 'capacity_max'),
-            ArrayField::new(propertyName: 'ergonomic'),
-
-            ArrayField::new(propertyName: 'equipment'),
-            
-
-            ImageField::new('image')
-            ->setLabel('Image principale')
-            // Chemin relatif pour accéder aux images dans l'administration
-            ->setBasePath('images') // Pas besoin de 'public' car le chemin généré commence à partir de la racine
-            // Chemin dans lequel les images sont uploadées
-            ->setUploadDir('public/images')
-            // Générer un nom de fichier unique pour chaque upload
-            ->setUploadedFileNamePattern('[randomhash].[extension]')
-            // Rendre le champ optionnel (pas requis)
-            ->setRequired(false),
-
-            //DateField::new(propertyName: 'created_at'),
-
-            CollectionField::new('roomImgs')
+      return [
+        TextField::new('title'),
+        TextEditorField::new('description'),
+        NumberField::new('price'),
+        TextField::new('address'),
+        TextField::new('city'),
+        TextField::new('zipcode'),
+        NumberField::new('capacity_min'),
+        NumberField::new('capacity_max'),
+        ArrayField::new('ergonomic'),
+        ArrayField::new('equipment'),
+        
+        CollectionField::new('roomImgs')
             ->setEntryType(RoomImagesType::class)
             ->setLabel('D autres images')
-
-        ];
+    ];
 
         
 
