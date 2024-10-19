@@ -24,7 +24,13 @@ class SearchRoom
     #[LiveProp(writable: true, url: true)]
     public ?string $capacityMax = null;
 
-   
+    #[LiveProp(writable: true, url: true)]
+    public ?string $ergonomics = null; // Garder comme une chaîne de caractères
+
+    #[LiveProp(writable: true, url: true)]
+    public ?string $equipment = null; // Equipement
+
+    
 
     public function __construct(private ROOMRepository $Rooms) {
         
@@ -44,6 +50,13 @@ class SearchRoom
          if ($this->capacityMax) {
              return $this->Rooms->findByCapacityMax($this->capacityMax);
          }
+
+        if ($this->ergonomics) {
+            return $this->Rooms->findByErgonomic($this->ergonomics);
+        }
+        if ($this->equipment) {
+            return $this->Rooms->findByEquipment($this->equipment);
+        }
 
         return $this->Rooms->findAll();
     }

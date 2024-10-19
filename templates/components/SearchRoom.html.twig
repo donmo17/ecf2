@@ -1,5 +1,8 @@
 <div class="row room__filter" {{ attributes }} >
-	{% set rooms = this.Rooms %}
+{% set rooms = this.Rooms %}
+
+
+	
 	<div class="col-12 col-lg-3 shadow p-3 mb-5 bg-body-tertiary rounded">
 		<h5 class="text-center">Filtrer ma recherche</h5>
 
@@ -84,14 +87,17 @@
 					<div class="accordion-body">
 							<div class="room__filter--group">
     <h6>Ergonomie</h6>
-
-    {% set alreadyDisplayed = [] %} {# Variable pour suivre les éléments déjà affichés #}
-
+    {% set alreadyDisplayed = [] %}
     {% for room in rooms %}
         {% for item in room.ergonomic %}
             {% if item not in alreadyDisplayed %}
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ item }}" id="{{ item | lower | replace({' ': '_'}) }}">
+                    <input class="form-check-input" 
+                           data-model="ergonomics" 
+                           type="checkbox" 
+                           value="{{ item }}" 
+                           id="{{ item | lower | replace({' ': '_'}) }}"
+                           {% if item in this.ergonomics %}checked{% endif %}>
                     <label class="form-check-label" for="{{ item | lower | replace({' ': '_'}) }}">
                         {{ item }}
                     </label>
@@ -102,16 +108,19 @@
     {% endfor %}
 </div>
 
-							<div class="room__filter--group">
+<div class="room__filter--group">
     <h6>Equipement</h6>
-
-    {% set alreadyDisplayedEquipment = [] %} {# Variable pour suivre les équipements déjà affichés #}
-
+    {% set alreadyDisplayedEquipment = [] %}
     {% for room in rooms %}
         {% for item in room.equipment %}
             {% if item not in alreadyDisplayedEquipment %}
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ item }}" id="{{ item | lower | replace({' ': '_'}) }}">
+                    <input class="form-check-input" 
+                           data-model="equipment" 
+                           type="checkbox" 
+                           value="{{ item }}" 
+                           id="{{ item | lower | replace({' ': '_'}) }}"
+                           {% if item in this.equipment %}checked{% endif %}>
                     <label class="form-check-label" for="{{ item | lower | replace({' ': '_'}) }}">
                         {{ item }}
                     </label>
@@ -120,9 +129,7 @@
             {% endif %}
         {% endfor %}
     {% endfor %}
-
-
-							</div>
+</div>
 							
 					</div>
 				</div>

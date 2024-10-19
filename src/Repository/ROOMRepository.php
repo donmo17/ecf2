@@ -92,7 +92,33 @@ public function findByCapacityMax(int $capacityMax): array
     return $qb->getQuery()->getResult();
 }
 
+public function findByErgonomic(?string $selectedErgonomic): array
+{
+    $qb = $this->createQueryBuilder('r');
 
+    // Filtrer par ergonomie si un élément est sélectionné
+    if ($selectedErgonomic) {
+        $qb->andWhere('r.ergonomic LIKE :selectedErgonomic')
+           ->setParameter('selectedErgonomic', '%'.$selectedErgonomic.'%'); // Utilise LIKE pour rechercher des valeurs
+    }
+
+    // Exécuter la requête et retourner un tableau de résultats
+    return $qb->getQuery()->getResult();
+}
+
+public function findByEquipment(?string $selectedEquipment): array
+{
+    $qb = $this->createQueryBuilder('r');
+
+    // Filtrer par équipement si un élément est sélectionné
+    if ($selectedEquipment) {
+        $qb->andWhere('r.equipment LIKE :selectedEquipment')
+           ->setParameter('selectedEquipment', '%'.$selectedEquipment.'%'); // Utilise LIKE pour rechercher des valeurs
+    }
+
+    // Exécuter la requête et retourner un tableau de résultats
+    return $qb->getQuery()->getResult();
+}
 
 
 }
