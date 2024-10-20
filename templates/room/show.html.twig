@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}EventRoom : {{  room.title }}{% endblock %}
+{% block title %}EventRoom : {{ room.title }}{% endblock %}
 
 {% block body %}
 <main class="room">
@@ -19,41 +19,59 @@
          
          <p>{{ room.description }}</p>
          <div class="row justify-content-between room__content--detail">
-            <div class="col-12 col-lg-6">
-            {% if room.ergonomic is not empty %}
-               <p><i class="bi bi-building"></i> Ergonomie :</p>
-               <ul>
-                  {% for ergo in room.ergonomic %}
-                  <li>{{ ergo }}</li>
-                  {% endfor %}
-               </ul>
-            {% endif %}
-            {% if room.equipment is not empty %}
-               <p><i class="bi bi-lightbulb"></i> Equipement :</p>
-               <ul>
-                  {% for eqt in room.equipment %}
-                     <li>{{ eqt }}</li>
-                  {% endfor %}
-               </ul>
-            {% endif %}
+            <div class="col-5 col-lg-6">
+               {% if room.ergonomic is not empty %}
+                  <p><i class="bi bi-building"></i> Ergonomie :</p>
+                  <ul>
+                     {% for ergo in room.ergonomic %}
+                     <li>{{ ergo }}</li>
+                     {% endfor %}
+                  </ul>
+               {% endif %}
+               {% if room.equipment is not empty %}
+                  <p><i class="bi bi-lightbulb"></i> Equipement :</p>
+                  <ul>
+                     {% for eqt in room.equipment %}
+                        <li>{{ eqt }}</li>
+                     {% endfor %}
+                  </ul>
+               {% endif %}
             </div>
-            <figure class="col-12 col-lg-5">
 
-                       <figure class="col-12 col-lg-5">
-    {% for image in room.getRoomImgs() %}
-        {% if image is not null %}
-            <img src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="Image de produit" class="w-full h-400">
-        {% else %}
-            <img src="{{ asset('images/cool.png') }}" alt="Image par défaut" class="w-full h-auto">
-        {% endif %}
-    {% endfor %}
-</figure>
-            </figure>
+            <!-- Carrousel Bootstrap -->
+            <div class="col-12 col-lg-15">
+               <div id="roomImagesCarousel" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                     {% for image in room.getRoomImgs() %}
+                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                           <img src="{{ vich_uploader_asset(image, 'imageFile') }}" class="d-block w-100" alt="Image de la salle">
+                        </div>
+                     {% else %}
+                        <div class="carousel-item active">
+                           <img src="{{ asset('images/cool.png') }}" class="d-block w-100" alt="Image par défaut">
+                        </div>
+                     {% endfor %}
+                  </div>
+
+                  <!-- Boutons précédent/suivant -->
+                  <button class="carousel-control-prev" type="button" data-bs-target="#roomImagesCarousel" data-bs-slide="prev">
+                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                     <span class="visually-hidden">Précédent</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#roomImagesCarousel" data-bs-slide="next">
+                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                     <span class="visually-hidden">Suivant</span>
+                  </button>
+               </div>
+            </div>
+            <!-- Fin du carrousel -->
          </div>
       </article>
+
+      <!-- Formulaire de réservation -->
       <section class="shadow-sm p-3 mb-5 rounded">
          <div class="room__content--form">
-            <legend><h5 class="text-center">Réservez votre salle dés maintenant</h5></legend>
+            <legend><h5 class="text-center">Réservez votre salle dès maintenant</h5></legend>
 
             {% for message in app.flashes('success') %}
                <div class="alert alert-success">
@@ -75,10 +93,9 @@
                   <button type="submit" class="btn btn-success">Réserver</button>
                </div>
             {{ form_end(BookingForm) }}
-
-
-            </form>
          </div>
+         
+         <!-- Coordonnées de la salle -->
          <div class="room__content--address">
             <h6>Coordonnées</h6>
             <p>{{ room.title }}<br/>
@@ -89,6 +106,3 @@
    </div>
 </main>
 {% endblock %}
-
-
-		
