@@ -22,7 +22,8 @@ class RoomImg
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageName = null;
 
-    
+ 
+
     #[ORM\ManyToOne(inversedBy: 'roomImgs')]
     private ?ROOM $Room = null;
 
@@ -66,6 +67,7 @@ class RoomImg
 
         return $this;
     }
+   
 
-    
+
 }
