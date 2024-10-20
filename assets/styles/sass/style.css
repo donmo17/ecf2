@@ -365,4 +365,92 @@ header .nav__container a li {
   .login__image {
     display: inline-block;
   }
+}
+
+.profile {
+  margin: 90px 5%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.profile__menu {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.profile__menu--head {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 15px;
+}
+.profile__menu--head img {
+  width: 100px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.profile__menu--list a {
+  color: inherit;
+  text-decoration: none;
+}
+.profile__menu--list a:hover {
+  color: #7BBCB0;
+}
+.profile__menu--list a .active {
+  font-weight: bold;
+  color: #7BBCB0;
+}
+.profile__menu--list li {
+  list-style: none;
+  padding: 15px;
+}
+.profile__menu--list li:hover {
+  border-bottom: #7BBCB0 1px solid;
+}
+.profile__content {
+  width: 100%;
+  padding: 50px;
+}
+.profile__content ul {
+  padding: 0;
+  width: 100%;
+}
+.profile__content ul li {
+  list-style: none;
+  padding: 5px 10px;
+  display: flex;
+  gap: 8px;
+}
+.profile__content ul li img {
+  width: 60px;
+  height: 60px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.profile__content--notification img {
+  width: 150px;
+  height: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 768px) {
+  .profile__menu {
+    width: 25%;
+    flex-direction: column;
+    justify-content: start;
+    gap: 50px;
+  }
+  .profile__menu--head {
+    flex-direction: column;
+    gap: 20px;
+    margin: 15px;
+  }
+  .profile__menu--list {
+    font-size: large;
+  }
+  .profile__content {
+    width: 75%;
+  }
 }/*# sourceMappingURL=style.css.map */
