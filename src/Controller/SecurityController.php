@@ -42,6 +42,8 @@ class SecurityController extends AbstractController
                 } catch (FileException $e) {
                     // Gérer l'exception si le fichier n'a pas pu être déplacé
                 }
+                // Mettre à jour le nom de l'image dans l'entité User
+                $user->setImage($newFilename);
             }
     
 

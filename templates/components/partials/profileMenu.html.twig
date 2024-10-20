@@ -22,7 +22,7 @@
                 Réservations
             </li>
         </a>
-        <a href="{{ path('app_profile_edit') }}">
+        <a href="{{ path('app_profil_user_edit', {'id': app.user.id}) }}">
             <li class="{% if app.request.attributes.get('_route') == 'app_profile_edit' %}active{% endif %}">
                 Paramètres
             </li>
