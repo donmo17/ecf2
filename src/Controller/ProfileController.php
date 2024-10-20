@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+
+use App\Form\EdituserType;
 use App\Repository\BOOKINGRepository;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class ProfileController extends AbstractController
 {
@@ -17,7 +21,7 @@ class ProfileController extends AbstractController
         // récupérer l'utilisateur
         $user = $security->getUser();
 
-            // Vérifier si l'utilisateur est connecté
+        // Vérifier si l'utilisateur est connecté
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
@@ -40,8 +44,8 @@ class ProfileController extends AbstractController
 
         // Limiter à 6 notifications récentes (en fonction de l'ordre d'ajout)
         $recentNotifications = array_slice($recentNotifications, 0, 6);
-           
-        
+
+
         return $this->render('profile/index.html.twig', [
             'recentBookings' => $recentBookings,
             'recentNotifications' => $recentNotifications,
@@ -49,10 +53,23 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/profile/booking', name: 'app_profile_booking')]
-    public function booking(): Response
+    public function booking(Security $security, BOOKINGRepository $bookingRepository): Response
     {
+        // récupérer l'utilisateur
+        $user = $security->getUser();
+
+        // Vérifier si l'utilisateur est connecté
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        // Récupérer les réservations de l'utilisateur
+        $bookings = $bookingRepository->findBy(
+            ['user_id' => $user],
+        );
+
         return $this->render('profile/booking.html.twig', [
-            'controller_name' => 'ProfileController',
+            'bookings' => $bookings,
         ]);
     }
 
@@ -62,7 +79,7 @@ class ProfileController extends AbstractController
         // récupérer l'utilisateur
         $user = $security->getUser();
 
-            // Vérifier si l'utilisateur est connecté
+        // Vérifier si l'utilisateur est connecté
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
@@ -86,15 +103,4 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/profile/edit', name: 'app_profile_edit')]
-    public function edit(  ): Response
-    {
-   
-        return $this->render('profile/edit.html.twig', [
-            'controller_name' => 'ProfileController',
-        ]);
-    }
-
-
-    
 }

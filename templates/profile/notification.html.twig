@@ -12,7 +12,7 @@
 			{% for notif in notifications %}
 			<div class="col-12 col-lg-6 p-2 profile__content--notification">
 				<div class="border border-{{ notif.label }} rounded d-flex gap-1">
-					<img src="{{ asset(notif.bookingId.roomId.image) }}" alt="Image de la salle">
+                    <img src="{{ vich_uploader_asset(notif.bookingId.roomId.getFirstImage(), 'imageFile') }}" alt="Image de la salle">
                     <div class="my-auto p-2">
 						<h6>{{ notif.title }}</h6>
 						<p>{{ notif.content }}</p>         

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EventRoom : Mon profil
+{% endblock %}
+
+{% block body %}
+	<main class="profile">
+		{{ include('./components/partials/profileMenu.html.twig') }}
+		<div class="profile__content">
+			<h1 class="text-center w-100 mb-5">Mes données personnelles</h1>
+			
+            {{ include('profil_user/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+          
+		{{ include('profil_user/_delete_form.html.twig') }}
+        </div>
+	</main>
+{% endblock %}
