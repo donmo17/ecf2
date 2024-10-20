@@ -9,16 +9,20 @@
 		<div class="profile__content">
 			<h1 class="text-center w-100">Mes Réservations</h1>
 			<div class="row">
-			{% for reservation in reservations %}
-			{# <div class="col-12 col-lg-6 p-2 profile__content--notification">
+			{% for booking in bookings %}
+			<div class="col-12 col-lg-6 p-2 profile__content--notification">
 				<div class="border rounded d-flex gap-1">
-					<img src="{{ asset(reservation.bookingId.roomId.image) }}" alt="Image de la salle">
+                    <img src="{{ vich_uploader_asset(booking.roomId.getFirstImage(), 'imageFile') }}" alt="Image de la salle">
+
                     <div class="my-auto p-2">
-						<h6>{{ reservation.title }}</h6>
-						<p>{{ reservation.content }}</p>         
+						<h6>"{{ booking.roomId.title }}"</h6>
+						<p class="w-100 m-0"><i>{{ booking.roomId.address }} ; {{ booking.roomId.zipCode }} {{ booking.roomId.city }}</i></p>
+						<p class="w-100 m-0"><strong>Réservation : </strong>{{ booking.status.value }}</p>         
+						<p class="w-100 m-0"><strong>Période : </strong><small>du {{ booking.checkInAt|date('d/m/Y') }} au {{ booking.checkOutAt|date('d/m/Y') }}.</small></p>         
+						<p class="w-100 m-0 text-danger"><strong>Total : </strong><span>{{ booking.billing | number_format(2, '.', ' ') }} €</span></p>         
 					</div>
                 </div>
-			</div> #}
+			</div>
 			{% endfor %}
 			</div>
 		</div>

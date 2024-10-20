@@ -49,10 +49,23 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/profile/booking', name: 'app_profile_booking')]
-    public function booking(): Response
+    public function booking(Security $security, BOOKINGRepository $bookingRepository): Response
     {
+        // récupérer l'utilisateur
+        $user = $security->getUser();
+
+        // Vérifier si l'utilisateur est connecté
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        // Récupérer les réservations de l'utilisateur
+        $bookings = $bookingRepository->findBy(
+            ['user_id' => $user],
+        );
+
         return $this->render('profile/booking.html.twig', [
-            'controller_name' => 'ProfileController',
+            'bookings' => $bookings,
         ]);
     }
 
@@ -62,7 +75,7 @@ class ProfileController extends AbstractController
         // récupérer l'utilisateur
         $user = $security->getUser();
 
-            // Vérifier si l'utilisateur est connecté
+        // Vérifier si l'utilisateur est connecté
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }

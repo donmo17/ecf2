@@ -25,7 +25,8 @@
                 <ul>
                     {% for booking in recentBookings %}
                         <li>
-                            <img src="{{ asset(booking.roomId.image) }}" alt="Image de la salle">
+                            <img src="{{ vich_uploader_asset(booking.roomId.getFirstImage(), 'imageFile') }}" alt="Image de la salle">
+                            {# <img src="{{ asset(booking.roomId.image) }}" alt="Image de la salle"> #}
                             <small>Réservation du {{ booking.checkInAt|date('d/m/Y') }} au {{ booking.checkOutAt|date('d/m/Y') }} pour la chambre {{ booking.roomId.title }}</small>
                         </li>
                     {% else %}
