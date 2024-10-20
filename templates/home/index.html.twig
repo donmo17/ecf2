@@ -8,18 +8,14 @@
 	<main class="home">
 		<div class="home__hero">
 			<figure class="home__hero--figure">
-				<img src="./images/website/hero.jpg" alt="illustration">
-			</figure>
+				<img src="https://www.snapevent.fr/media/cache/place_full/upload/user/image/000/662/SnapEvent-Lieu-L-atelier-du-france-234761.jpg" alt="illustration">
+		
+	
 			<div class="home__hero--text">
-				<h1>Louez les salles correspondants à vos besoins</h1>
-				<p>Trouvez les meilleurs salles, au meilleurs prix sur notre site. Vous y trouverez tout ce dont vous avez besoins en quelques cliques.</p>
-				<a href="{{ path('app_room')}}">
-					<button class="btn btn-light">Toutes les salles</button>
-				</a>
-			</div>
-		</div>
-		<div class="home__form">
-			<div class="home__form--content shadow p-3 mb-5 bg-body-tertiary rounded">
+				<h1 class="text-shadow">Louez les salles correspondants à vos besoins</h1>
+				<p class="text-shadow">Trouvez les meilleurs salles, au meilleurs prix sur notre site. Vous y trouverez tout ce dont vous avez besoins en quelques cliques.</p>
+				<br>
+				<div class="home__form--content shadow p-3 mb-5 bg-body-tertiary rounded">
 			<form action="{{ path('app_room')}}" method="GET">
 					<div class="home__form--group">
 						<label for="city">Ville</label>
@@ -49,46 +45,51 @@
 				
 			</form>
 				</div>
+<a class="text-shadow" href="{{ path('app_room')}}">
+<button class="btn btn-light fw-bold">DÉCOUVREZ TOUTES NOS SALLES</button>
+				</a>
+			</div>
+			
+			
 		</div>
-
+		<div class="home__form">
+			
+		</div>
+	</figure>
 		<article class="home__gallery">
 			<h2>Découvrez nos dernières salles :</h2>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, assumenda odit aut nulla, reprehenderit numquam nisi repudiandae sint consequatur distinctio dolorem exercitationem ratione? Molestiae, rem quam illum quod fuga nobis.</p>
+    <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, assumenda odit aut nulla, reprehenderit numquam nisi repudiandae sint consequatur distinctio dolorem exercitationem ratione? Molestiae, rem quam illum quod fuga nobis.</p>
 
 			<div class="row">
-				{% for room in rooms %}
-					<div class="col-6 col-lg-4 p-2">
-						<a href="{{ path('app_room_show', { 'id': room.id }) }}">
-							<div class="card">
-								
-							 {% if room.getFirstImage() is not null %}
+    {% for room in rooms %}
+        <div class="col-6 col-lg-4 p-2">
+            <a href="{{ path('app_room_show', { 'id': room.id }) }}">
+                <div class="card">
+                    {% if room.getFirstImage() is not null %}
                         <img src="{{ vich_uploader_asset(room.getFirstImage(), 'imageFile') }}" alt="Room Image" class="w-full h-36 object-cover">
-                        {% else %}
+                    {% else %}
                         <img src="{{ asset('images/website/hero.jpg') }}" alt="Produit Image Par Défaut" class="w-full h-36 object-cover">
-                        {% endif %}
+                    {% endif %}
 
-								<div class="card-body">
-									<h5 class="card-title">{{ room.title }}</h5>
-									<p><i>{{ room.city }}</i></p>
-									<ul>
-										<li>Lumière naturelle</li>
-										<li>Cuisine équipée</li>
-										<li>Espace extérieur</li>
-									</ul>
-									{# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> #}
-									<div class="d-flex justify-content-between">
-										<ul>
-					                        <li><small> Min : {{ room.capacityMin }} <i class="bi bi-people"></i></small></li>
-					                        <li><small> Max : {{ room.capacityMax }} <i class="bi bi-people"></i></small></li>
-					                    </ul>
-										<p><span>{{ room.price }} €</span><br>/jour</p>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-				{% endfor %}
-			</div>
+                    <div class="card-body">
+                        <h5 class="card-title text-truncate" style="max-width: 100%;">
+                            {{ room.title }}
+                        </h5>
+                        <p><i>{{ room.city }}</i></p>
+                        <div class="d-flex justify-content-between">
+                            <ul>
+                                <li><small> Min : {{ room.capacityMin }} <i class="bi bi-people"></i></small></li>
+                                <li><small> Max : {{ room.capacityMax }} <i class="bi bi-people"></i></small></li>
+                            </ul>
+                            <p><span>{{ room.price }} €</span><br>/jour</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
 		</article>
 	</main>
 {% endblock %}
