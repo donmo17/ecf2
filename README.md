@@ -79,8 +79,8 @@ Ce guide explique comment contribuer au projet de gestion des salles en utilisan
 
 9. Installez la bibliothèque NPM :
    ```bash
-   NPM install
-   NPM run dev
+   npm install
+   npm run dev
    ```
 
 
