@@ -16,14 +16,7 @@ class ROOMRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, ROOM::class);
     }
-    public function findByCity(string $city): array
-    {
-        $qb = $this->createQueryBuilder('r')
-            ->andWhere('r.city LIKE :city')
-            ->setParameter('city', '%' . $city . '%'); // Ajout des jokers % pour permettre la recherche partielle
     
-        return $qb->getQuery()->getResult();
-    }
     
     
     public function findByDate(array $dates = []): QueryBuilder
@@ -68,29 +61,43 @@ public function findByQuery(string $query): array
 }
 
 
-public function findByCapacityMin(int $capacityMin): array
+
+
+public function findByRange(?int $capacityMin , ?int $capacityMax , ?string $city): array
 {
+    // Créer un QueryBuilder pour l'entité ROOM
     $qb = $this->createQueryBuilder('r');
 
-    // Modifier la condition pour "greater than or equal to"
-    $qb->andWhere('r.capacity_min >= :capacityMin')
-       ->setParameter('capacityMin', $capacityMin);
+    // Si capacityMin est défini, ajouter la condition correspondante
+    if ($capacityMin !== null) {
+        $qb->andWhere('r.capacity_min >= :capacityMin')
+           ->setParameter('capacityMin', $capacityMin);
+    }
+
+    // Si capacityMax est défini, ajouter la condition correspondante
+    if ($capacityMax !== null) {
+        $qb->andWhere('r.capacity_max <= :capacityMax')
+           ->setParameter('capacityMax', $capacityMax);
+           
+           
+           if ($city !== null) {
+           
+            $qb ->andWhere('r.city LIKE :city')
+            ->setParameter('city', '%' . $city . '%'); // Ajout des jokers % pour permettre la recherche partielle
+    
+
+           }
+
+
+    }
+
 
     // Exécuter la requête et retourner un tableau de résultats
     return $qb->getQuery()->getResult();
 }
 
-public function findByCapacityMax(int $capacityMax): array
-{
-    $qb = $this->createQueryBuilder('r');
 
-    // Modifier la condition pour "less than or equal to"
-    $qb->andWhere('r.capacity_max <= :capacityMax')
-       ->setParameter('capacityMax', $capacityMax);
 
-    // Exécuter la requête et retourner un tableau de résultats
-    return $qb->getQuery()->getResult();
-}
 
 public function findByErgonomic(?string $selectedErgonomic): array
 {
@@ -119,6 +126,10 @@ public function findByEquipment(?string $selectedEquipment): array
     // Exécuter la requête et retourner un tableau de résultats
     return $qb->getQuery()->getResult();
 }
+
+
+
+
 
 
 }

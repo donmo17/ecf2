@@ -19,10 +19,10 @@ class SearchRoom
     public ?string $city = null;
 
     #[LiveProp(writable: true, url: true)]
-    public ?string $capacityMin = null;
+    public ?int $capacityMin = null;
 
     #[LiveProp(writable: true, url: true)]
-    public ?string $capacityMax = null;
+    public ?int $capacityMax = null;
 
     #[LiveProp(writable: true, url: true)]
     public ?string $ergonomics = null; // Garder comme une chaîne de caractères
@@ -38,18 +38,12 @@ class SearchRoom
 
     public function getRooms(): array
     {
+  
         if ($this->query) {
             return $this->Rooms->findByQuery($this->query);
         }
-        if ($this->city) {
-            return $this->Rooms->findByCity($this->city);
-        }
-        if ($this->capacityMin ) {
-            return $this->Rooms->findByCapacityMin($this->capacityMin);
-        }
-         if ($this->capacityMax) {
-             return $this->Rooms->findByCapacityMax($this->capacityMax);
-         }
+       
+        
 
         if ($this->ergonomics) {
             return $this->Rooms->findByErgonomic($this->ergonomics);
@@ -57,6 +51,11 @@ class SearchRoom
         if ($this->equipment) {
             return $this->Rooms->findByEquipment($this->equipment);
         }
+
+        if ($this->capacityMin || $this->capacityMax || $this->city  ) {
+            return $this->Rooms->findByRange($this->capacityMin, $this->capacityMax,$this->city);
+        }    
+
 
         return $this->Rooms->findAll();
     }
