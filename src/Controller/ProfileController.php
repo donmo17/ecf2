@@ -44,7 +44,8 @@ class ProfileController extends AbstractController
 
         // Limiter à 6 notifications récentes (en fonction de l'ordre d'ajout)
         $recentNotifications = array_slice($recentNotifications, 0, 6);
-
+        // Inverser l'ordre pour afficher les plus récentes en premier
+        $recentNotifications = array_reverse($recentNotifications);
 
         return $this->render('profile/index.html.twig', [
             'recentBookings' => $recentBookings,
@@ -97,6 +98,8 @@ class ProfileController extends AbstractController
                 $notifications[] = $notification;
             }
         }
+
+        $notifications = array_reverse($notifications);
 
         return $this->render('profile/notification.html.twig', [
             'notifications' => $notifications,

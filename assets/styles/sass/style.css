@@ -429,11 +429,21 @@ header .nav__container a li {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.profile__content--notification p {
+  font-size: 0.9em;
+}
 .profile__content--notification img {
   width: 150px;
   height: 150px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.profile__content .disable {
+  background-color: rgba(233, 233, 233, 0.7215686275) !important;
+  color: rgba(128, 128, 128, 0.7) !important;
+}
+.profile__content .disable img {
+  filter: grayscale(100%);
 }
 @media (min-width: 768px) {
   .profile__menu {

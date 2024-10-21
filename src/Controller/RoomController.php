@@ -126,7 +126,7 @@ class RoomController extends AbstractController
             // return $this->redirectToRoute('app_payment');
 
             // Redirigez l'utilisateur vers la même page pour afficher le message flash
-            return $this->redirectToRoute('app_room_show', ['id' => $id]);
+            return $this->redirectToRoute('app_profile_index');
         }
       
         return $this->render('room/show.html.twig', [

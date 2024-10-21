@@ -73,11 +73,6 @@
          <div class="room__content--form">
             <legend><h5 class="text-center">Réservez votre salle dès maintenant</h5></legend>
 
-            {% for message in app.flashes('success') %}
-               <div class="alert alert-success">
-                  {{ message }}
-               </div>
-            {% endfor %}
 
             {% for message in app.flashes('error') %}
                <div class="alert alert-danger">
