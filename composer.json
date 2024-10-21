@@ -14,6 +14,8 @@
         "doctrine/orm": "^3.3",
         "easycorp/easyadmin-bundle": "^4.13",
         "fakerphp/faker": "^1.23",
+        "knpuniversity/oauth2-client-bundle": "*",
+        "league/oauth2-google": "^4.0",
         "pagerfanta/doctrine-orm-adapter": "^4.7",
         "pagerfanta/twig": "^4.7",
         "phpdocumentor/reflection-docblock": "^5.4",
