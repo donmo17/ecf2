@@ -51,10 +51,26 @@ class RoomController extends AbstractController
     #[Route('/room/show/{id}', name: 'app_room_show', methods: ['GET', 'POST'])]
     public function show($id , ROOMRepository $rooms, Request $request, Security $security, EntityManagerInterface $em, BOOKINGRepository $bookingRepository): Response
     {
-
+        
         $room = $rooms->findOneBy(['id' => $id]);
-        $booking = new BOOKING();
 
+        // Affichage du calendrier
+        $events = $bookingRepository->findBy(['room_id' => $room]);
+        
+        $calendarEvents = [];
+        foreach ($events as $event) {
+            $calendarEvents[] = [
+                'title' => 'Réservé',
+                'start' => $event->getCheckInAt()->format('Y-m-d H:i:s'),
+                'end' => $event->getCheckOutAt()->format('Y-m-d H:i:s'),
+                'backgroundColor' => '#007bff', // Couleur bleue, à ajuster selon vos préférences
+                'borderColor' => '#007bff',
+            ];
+        }
+
+        // Création et traitement du formulaire
+        $booking = new BOOKING();
+        
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
@@ -131,7 +147,8 @@ class RoomController extends AbstractController
       
         return $this->render('room/show.html.twig', [
             'BookingForm' => $form,
-            'room'=>$room
+            'room'=>$room,
+            'events' => json_encode($calendarEvents),
         ]);
     }
 }

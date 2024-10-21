@@ -70,9 +70,13 @@
 
       <!-- Formulaire de réservation -->
       <section class="shadow-sm p-3 mb-5 rounded">
+
+         <h5>Calendrier des réservations</h5>
+         <button class="btn btn-primary" id="calendar-btn">Voir le calendrier</button>
+         <div id="calendar" style="display: none;"></div>
+
          <div class="room__content--form">
             <legend><h5 class="text-center">Réservez votre salle dès maintenant</h5></legend>
-
 
             {% for message in app.flashes('error') %}
                <div class="alert alert-danger">
@@ -106,4 +110,51 @@
       </section>
    </div>
 </main>
+
+{% block javascripts %}
+{{ parent() }}
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
+<script>
+    // Fonction pour initialiser le calendrier
+    function initializeCalendar() {
+        var calendarEl = document.getElementById('calendar');
+        
+        // Vérifier si le calendrier existe déjà
+        if (calendarEl._calendar) {
+            calendarEl._calendar.destroy();
+        }
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            events: {{ events|raw }},
+            headerToolbar: {
+               left: 'prev',
+               center: 'title',
+               right:'next'
+            }
+        });
+
+        calendar.render();
+        
+        // Stocker l'instance du calendrier
+        calendarEl._calendar = calendar;
+    }
+
+    // Initialiser le calendrier lorsque le bouton est cliqué
+    document.getElementById('calendar-btn').addEventListener('click', function() {
+        // Cacher le bouton
+        this.style.display = 'none';
+        
+        // Afficher le calendrier
+        var calendarEl = document.getElementById('calendar');
+        calendarEl.style.display = 'block';
+        
+        // Initialiser le calendrier
+        initializeCalendar();
+    });
+
+    // Réinitialiser le calendrier lors du changement d'URL
+    window.addEventListener('popstate', initializeCalendar);
+</script>
+{% endblock %}
 {% endblock %}
