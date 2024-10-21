@@ -8,12 +8,12 @@
 
 		<form action="" method="get" class="room__filter--form">
 			<div class="room__filter--group">
-				<label for="">Date d'entrée</label>
-				<input type="date" name="">
+				<label for="checkIn">Date d'entrée</label>
+				<input type="date" name="checkIn">
 			</div>
 			<div class="room__filter--group">
-				<label for="">Date de sortie</label>
-				<input type="date" name="">
+				<label for="checkOut">Date de sortie</label>
+				<input type="date" name="checkOut">
 			</div>
 			<div class="button">
 				<button type="submit" class="btn btn-warning">
@@ -144,8 +144,8 @@
 
 		<div class="room__filter--search">
 			<input type="text" data-model="query" name="" id="" placeholder="  Votre recherche " style="width: 500px">
-			{# <p>Résultat:
-				{{ this.Rooms ? this.Rooms|length : "0" }}</p> #}
+			<p>Résultat:
+				{{ this.Rooms ? this.Rooms|length : "0" }}</p>
 
 			{# <p>Résultats : {{ rooms|length }}</p> #}
 		</div>

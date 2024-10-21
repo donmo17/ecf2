@@ -3,6 +3,7 @@
 namespace App\Twig\Components;
 
 use App\Repository\ROOMRepository;
+use DateTime;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
@@ -30,11 +31,16 @@ class SearchRoom
     #[LiveProp(writable: true, url: true)]
     public ?string $equipment = null; // Equipement
 
-    
+    #[LiveProp(writable: true, url: true)]
+    public ?DateTime $checkIn = null;
+
+    #[LiveProp(writable: true, url: true)]
+    public ?DateTime $checkOut = null;
 
     public function __construct(private ROOMRepository $Rooms) {
         
     }
+
 
     public function getRooms(): array
     {
@@ -43,7 +49,13 @@ class SearchRoom
             return $this->Rooms->findByQuery($this->query);
         }
        
-        
+        if ($this->checkIn || $this->checkOut) {
+            return $this->Rooms->findByDate($this->checkIn, $this->checkOut);
+        }
+
+        if ($this->city) {
+            return $this->Rooms->findByCity($this->city);
+        }
 
         if ($this->ergonomics) {
             return $this->Rooms->findByErgonomic($this->ergonomics);

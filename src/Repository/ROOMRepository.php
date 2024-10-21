@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\ROOM;
+use DateTime;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -15,25 +16,6 @@ class ROOMRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ROOM::class);
-    }
-    
-    
-    
-    public function findByDate(array $dates = []): QueryBuilder
-    {
-        $qb = $this->createQueryBuilder('r');
-
-        if (\array_key_exists('start', $dates)) {
-            $qb->andWhere('r.date >= :start')
-            ->setParameter('start', new \DateTimeImmutable($dates['start']));
-        }
-
-        if (\array_key_exists('end', $dates)) {
-            $qb->andWhere('r.date <= :end')
-            ->setParameter('end', new \DateTimeImmutable($dates['end']));
-        }
-
-        return $qb;
     }
 
 //    /**
@@ -58,6 +40,17 @@ public function findByQuery(string $query): array
         ->setParameter('query', '%' . $query . '%')
         ->getQuery()
         ->getResult(); // Renvoie tous les résultats correspondants
+}
+
+public function findByDate(DateTime $checkIn, DateTime $checkOut): array
+{
+    return $this->createQueryBuilder('r')
+        ->leftJoin('r.bookings', 'b')
+        ->where('b.id IS NULL OR (b.check_out_at <= :checkIn OR b.check_in_at >= :checkOut)')
+        ->setParameter('checkIn', $checkIn)
+        ->setParameter('checkOut', $checkOut)
+        ->getQuery()
+        ->getResult();
 }
 
 
