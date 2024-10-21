@@ -6,6 +6,7 @@ use App\Entity\BOOKING;
 use App\Form\BookingType;
 use Pagerfanta\Pagerfanta;
 use App\Entity\NOTIFICATION;
+use App\Repository\BOOKINGRepository;
 use App\Repository\ROOMRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
@@ -48,7 +49,7 @@ class RoomController extends AbstractController
 
 
     #[Route('/room/show/{id}', name: 'app_room_show', methods: ['GET', 'POST'])]
-    public function show($id , ROOMRepository $rooms, Request $request, Security $security, EntityManagerInterface $em): Response
+    public function show($id , ROOMRepository $rooms, Request $request, Security $security, EntityManagerInterface $em, BOOKINGRepository $bookingRepository): Response
     {
 
         $room = $rooms->findOneBy(['id' => $id]);
@@ -68,11 +69,32 @@ class RoomController extends AbstractController
             if(!$user){
                 return $this->redirectToRoute('app_login');
             }
-            // Sinon calculer le billing = (check_in_at - check_out_at)+1 * room.price
+
             // Récupérer les dates d'entrée et de sortie du formulaire
             $checkInAt = $form->get('check_in_at')->getData();
             $checkOutAt = $form->get('check_out_at')->getData();
 
+            // Vérifier dans room.bookings si :
+                // - s'il y a déjà des réservations à cette date pour cette salle?
+                // si oui, retourner un message flash
+                // sinon, poursuivre le traitement
+            // Vérifier si la salle est déjà réservée pour ces dates
+            $existingBookings = $bookingRepository->createQueryBuilder('b')
+                ->where('b.room_id = :room')
+                ->andWhere('b.check_in_at <= :checkOutAt AND b.check_out_at >= :checkInAt')
+                ->setParameter('room', $room)
+                ->setParameter('checkOutAt', $checkOutAt)
+                ->setParameter('checkInAt', $checkInAt)
+                ->getQuery()
+                ->getResult();
+
+            // Si une réservation existe déjà pour ces dates, envoyer un message flash
+            if (count($existingBookings) > 0) {
+                $this->addFlash('error', 'La salle est déjà réservée pour les dates sélectionnées.');
+                return $this->redirectToRoute('app_room_show', ['id' => $id]);
+            }
+
+            // Calculer le billing = (check_in_at - check_out_at)+1 * room.price
             // Calculer la différence entre les dates (en jours)
             $interval = $checkOutAt->diff($checkInAt)->days + 1; // Ajouter 1 pour inclure le jour de départ
 
